@@ -1,0 +1,22 @@
+{
+  "name": "the-grocery-list",
+  "version": "1.0.0",
+  "description": "shekly provides you a healthy meal plan and grocery list",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nkartha2/the-grocery-list.git"
+  },
+  "author": "neely kartha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nkartha2/the-grocery-list/issues"
+  },
+  "homepage": "https://github.com/nkartha2/the-grocery-list#readme",
+  "dependencies": {
+    "react": "^16.5.2"
+  }
+}
