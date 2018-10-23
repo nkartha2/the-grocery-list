@@ -7,7 +7,7 @@ const config = {
         filename: 'bundle.js',
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.css']
+        extensions: ['.js', '.jsx', '.css', '.tsx', '.ts', ]
     },
     module: {
         rules: [
@@ -15,6 +15,11 @@ const config = {
                 test: /\.jsx?/,
                 exclude: /node_modules/,
                 use: 'babel-loader'
+            },
+            {
+                test: /\.tsx?$/,
+                exclude: /node_modules/,
+                use: 'ts-loader',
             }
         ]
     }
