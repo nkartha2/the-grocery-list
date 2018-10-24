@@ -1,0 +1,7 @@
+### VisualStudioCode ###
+.vscode
+
+# Distribution / packaging
+.Python
+lib/
+bin/
