@@ -1,6 +1,5 @@
-import React from "react";
+import * as React from "react";
 import ReactDOM from "react-dom";
-// import App from "./app";
 
 import RecipeForm from "./forms/recipe_form.tsx";
 
