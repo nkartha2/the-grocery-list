@@ -5,8 +5,7 @@ const config = {
     entry: __dirname + '/js/index.jsx',
     output: {
         path: path.join(__dirname, '/dist'),
-        filename: 'bundle.js',
-        // publicPath: '/pu blic'
+        filename: 'bundle.js'
     },
     watch: true,
     resolve: {
