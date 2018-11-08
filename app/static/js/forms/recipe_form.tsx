@@ -14,9 +14,9 @@ export default class RecipeForm extends React.Component<{}, {}> {
                 <label htmlFor="recipe-link">Link</label>
                 <input type="text" id="reciple-link"/>
                 <select id="recipe-state">
-                    <option value="approved">Love it</option>
+                    <option value="approve">Love it</option>
                     <option value="pending">Try it</option>
-                    <option value="archived">Ugh. No.</option>
+                    <option value="archive">Ugh. No.</option>
                 </select>
             </form>
         );
