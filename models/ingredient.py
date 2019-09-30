@@ -1,16 +1,18 @@
-from sqlalchemy import ForeignKey, Date, String, Column, Integer, relationship
+from sqlalchemy import ForeignKey, Date, String, Column, Integer
 import datetime
+from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+from main import db
 
 Base = declarative_base()
 
-class UnitOfMeasure(Base):
+class UnitOfMeasure(db.Model):
   __tablename__ = 'unit_of_measure'
   id = Column("measure_id", Integer, primary_key=True)
   name = Column("measure_name", String)
 
 
-class Ingredient(Base):
+class Ingredient(db.Model):
   __tablename__ = 'ingredient'
   id = Column('ingredient_id', Integer, primary_key=True)
   name = Column("ingredient_name", String)
@@ -23,7 +25,7 @@ class Ingredient(Base):
 
 # no association to this parent on children (?)
 # https://docs.sqlalchemy.org/en/13/orm/basic_relationships.html
-class Ingredients(Base):
+class Ingredients(db.Model):
   __tablename__ = "ingredients"
   id = Column('ingredients_id', Integer, primary_key=True)
   # Ingredients to Ingredient is Many to One relationship

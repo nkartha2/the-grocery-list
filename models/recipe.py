@@ -2,7 +2,9 @@
 import enum
 import datetime
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Enum, Date, String, Column, Integer, relationship
+from sqlalchemy import Enum, Date, String, Column, Integer
+from sqlalchemy.orm import relationship
+from main import db
 
 class StateEnum(enum.Enum):
   active = 1
@@ -15,7 +17,7 @@ class StateEnum(enum.Enum):
 # mapper calls
 Base = declarative_base()
 
-class Recipe(Base):
+class Recipe(db.Model):
   __tablename__ = 'recipes'
   id = Column('recipe_id', Integer, primary_key=True)
   name = Column('recipe_name', String(50))
