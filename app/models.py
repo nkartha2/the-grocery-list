@@ -45,8 +45,7 @@ class Recipe(db.Model):
   created_at = Column('created_at', Date, onupdate=datetime.datetime.now)
   updated_at = Column('updated_at', Date, onupdate=datetime.datetime.now)
 
-# no association to this parent on children (?)
-# https://docs.sqlalchemy.org/en/13/orm/basic_relationships.html
+
 class Ingredients(db.Model):
   __tablename__ = 'ingredients'
   id = Column('ingredients_id', Integer, primary_key=True)
