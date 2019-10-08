@@ -1,6 +1,7 @@
-from flask import render_template, request
+from flask import render_template, request, jsonify
 from app.models import Ingredient, Ingredients, Recipe, UnitOfMeasure
 from app import app, db
+from app.schemas import ingredients_schema
 
 # the default page
 @app.route("/", methods=["GET", "POST"])
@@ -14,11 +15,12 @@ def recipe():
 def admin_ingredients():
   return render_template("index.html")
 
-@app.route("/api/ingredient", methods=["POST"])
+@app.route("/api/v1/add/ingredient", methods=["POST"])
 def add_ingredient():
-  print("HELLOOOOOOOO")
-  ingredients = db.session.query(Ingredient).limit(5).all
-  return ingredients
+  ingredient = db.session.query(Ingredient).limit(5)
+  ingredients = ingredient.all()
+  all_ingredients = ingredients_schema.dump(ingredients)
+  return jsonify(all_ingredients)
 
 
 @app.route("/admin/ingredients", methods=["POST"])

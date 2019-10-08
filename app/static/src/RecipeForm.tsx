@@ -7,7 +7,7 @@ const axiosClient = axios.create({
 function RecipeForm(): JSX.Element {
   async function submitRecipe () {
     try {
-      axiosClient.post('/api/ingredient')
+      axiosClient.post('/api/v1/add/ingredient')
     } catch(e) {
       console.error(e)
     }
