@@ -12,10 +12,11 @@ def recipe():
 @app.route("/admin/ingredients", methods=["GET"])
 # what gets executed when arriving on the main page
 def admin_ingredients():
-  return render_template("ingredient_admin.html")
+  return render_template("index.html")
 
-@app.route("/api/ingredient", methods=["GET"])
-def get_ingredients():
+@app.route("/api/ingredient", methods=["POST"])
+def add_ingredient():
+  print("HELLOOOOOOOO")
   ingredients = db.session.query(Ingredient).limit(5).all
   return ingredients
 
@@ -28,7 +29,7 @@ def admin_add_ingredient():
     )
     db.session.add(ingredient)
     db.session.commit()
-    return render_template("ingredient_admin.html")
+    return render_template("index.html")
 
 @app.route("/admin/uom", methods=["GET"])
 def admin_uom():

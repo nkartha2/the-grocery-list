@@ -1,10 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 
+const axiosClient = axios.create({
+  baseURL: 'http://localhost:8080'
+})
 function RecipeForm(): JSX.Element {
-  function submitRecipe () {
+  async function submitRecipe () {
     try {
-      axios.get('/api/ingredient')
+      axiosClient.post('/api/ingredient')
     } catch(e) {
       console.error(e)
     }
