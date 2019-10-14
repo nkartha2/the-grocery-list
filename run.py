@@ -1,7 +1,10 @@
 from flask import render_template, request, jsonify
+from flask_cors import CORS
 from app.models import Ingredient, Ingredients, Recipe, UnitOfMeasure
 from app import app, db
 from app.schemas import ingredients_schema
+
+CORS(app)
 
 # the default page
 @app.route("/", methods=["GET", "POST"])
@@ -22,6 +25,12 @@ def add_ingredient():
   all_ingredients = ingredients_schema.dump(ingredients)
   return jsonify(all_ingredients)
 
+@app.route("/api/v1/add/recipe", methods=["POST"])
+def add_recipe():
+  print(request)
+  recipe_name = request.form.get("recipe_name")
+  print("RECIPE NAME", recipe_name)
+  return jsonify(recipe_name)
 
 @app.route("/admin/ingredients", methods=["POST"])
 def admin_add_ingredient():
