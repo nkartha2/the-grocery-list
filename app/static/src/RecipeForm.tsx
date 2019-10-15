@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import IngredientForm from "./IngredientForm";
+import axiosClient from "./axiosClient";
 
-const axiosClient = axios.create({
-  baseURL: 'http://localhost:8080/'
-})
+
 function RecipeForm(): JSX.Element {
   const [recipeName, setRecipeName] = useState("");
 
@@ -28,13 +27,13 @@ function RecipeForm(): JSX.Element {
   return (
     <div>
       <label>Recipe Link</label>
-      <input type="url" name="recipe_link"></input>
+      <input type="url" name="recipe_link"/>
       <label>Recipe Name</label>
-      <input type="text" name="recipe_name" onChange={(e) => handleChange(e)}></input>
+      <input type="text" name="recipe_name" onChange={(e) => handleChange(e)} />
       <h3>Added Ingredients:</h3>
-      <ul></ul>
       <label>Notes</label>
-      <textarea name="notes"></textarea>
+      <IngredientForm />
+      <textarea name="notes" />
       <button onClick={submitRecipe}>Add Recipe</button>
     </div>
   );
