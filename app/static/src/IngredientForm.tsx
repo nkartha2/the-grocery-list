@@ -7,7 +7,7 @@ function IngredientForm(): JSX.Element {
       axiosClient({
         method: "get",
         url: "/api/v1/ingredient",
-        data: {
+        params: {
           "ingredient_name": ingredName
         }
       })
