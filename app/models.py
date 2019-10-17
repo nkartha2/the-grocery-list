@@ -27,7 +27,7 @@ class UnitOfMeasure(db.Model):
 class Ingredient(db.Model):
   __tablename__ = 'ingredient'
   id = Column('ingredient_id', Integer, primary_key=True)
-  name = Column("ingredient_name", String)
+  name = Column("ingredient_name", String, unique=True)
   ingredient_type = Column("ingredient_type", String)
 
 # if a recipe is deleted - then ingredients
@@ -38,7 +38,7 @@ class Recipe(db.Model):
   __tablename__ = 'recipes'
   id = Column('recipe_id', Integer, primary_key=True)
   name = Column('recipe_name', String(50))
-  link = Column('recipe_link', String(150))
+  link = Column('recipe_link', String(150), unique=True)
   state = Column('recipe_state', Enum(RecipeState))
   notes = Column('recipe_notes', String(200))
   ingredients = relationship("Ingredients")

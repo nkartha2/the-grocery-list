@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import IngredientForm from "./IngredientForm";
 import axiosClient from "./axiosClient";
 
+// {
+  // recipe_name: "tomato soup",
+  // recipe_link: "https://minimalistbaker.com/creamy-roasted-red-pepper-tomato-soup/",
+  // recipe_notes: "",
+  // ingredients: [
+    // {ingredient_id, quantity, uom_id}, ingredient_id
+// }
 
 function RecipeForm(): JSX.Element {
   const [recipeName, setRecipeName] = useState("");

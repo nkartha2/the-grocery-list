@@ -16,7 +16,7 @@ def recipe():
 @app.route("/admin/ingredients", methods=["GET"])
 # what gets executed when arriving on the main page
 def admin_ingredients():
-  return render_template("index.html")
+  return render_template("ingredient_admin.html")
 
 @app.route("/api/v1/add/ingredient", methods=["POST"])
 def add_ingredient():
@@ -24,6 +24,22 @@ def add_ingredient():
   ingredients = ingredient.all()
   all_ingredients = ingredients_schema.dump(ingredients)
   return jsonify(all_ingredients)
+
+@app.route("/api/v1/ingredient", methods=["GET"])
+def get_ingredient():
+  ingredient_name = request.args.get("ingredient_name")
+  ingredient = Ingredient.query.filter_by(name=ingredient_name).limit(5)
+  ingredients = ingredient.all()
+  all_ingredients = ingredients_schema.dump(ingredients)
+  return jsonify(all_ingredients)
+
+@app.route("/api/v1/uom", methods=["GET"])
+def get_uom():
+  request_uom = request.args.get("uom")
+  uom = UnitOfMeasure.query.filter_by(name=request_uom).limit(5)
+  uoms = uom.all()
+  all_uoms = ingredients_schema.dump(uoms)
+  return jsonify(all_uoms)
 
 @app.route("/api/v1/add/recipe", methods=["POST"])
 def add_recipe():
@@ -40,7 +56,7 @@ def admin_add_ingredient():
     )
     db.session.add(ingredient)
     db.session.commit()
-    return render_template("index.html")
+    return render_template("ingredient_admin.html")
 
 @app.route("/admin/uom", methods=["GET"])
 def admin_uom():
