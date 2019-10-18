@@ -1,7 +1,21 @@
 import React, { useState } from 'react';
 import axiosClient from "./axiosClient";
 
-function IngredientForm(): JSX.Element {
+type IngredientResult = {name: string, id: string};
+
+function ResultsList(results: any) {
+  const listItems = results.map((ing: IngredientResult) =>
+    <li key={ing.id}>{ing.name}</li>
+  )
+  return (<ul>{listItems}</ul>);
+}
+
+function IngredientForm(makeList: any): JSX.Element {
+  const [ingredientResults, setIngResults] = useState<IngredientResult[] | []>([]);
+  const [ingredientName, setIngredientName] = useState("");
+  const [uom, setUOM] = useState("");
+  const [quantity, setQuantity] = useState("");
+
   async function searchIngredients (ingredName: string) {
     try {
       axiosClient({
@@ -10,10 +24,16 @@ function IngredientForm(): JSX.Element {
         params: {
           "ingredient_name": ingredName
         }
-      })
+      }).then(
+          response => {
+            setIngResults(response.request.response)
+          }
+        )
     } catch(e) {
-        console.error(e);
-      }
+      console.error(e);
+    } finally {
+      console.log(ingredientResults);
+    }
   }
 
   async function getUnitofMeasure (uom: string) {
@@ -42,16 +62,23 @@ function IngredientForm(): JSX.Element {
     }
   }
 
+  const handleAddIngredient = () => {
+    makeList();
+  }
+
   return (
     <div>
       <h3>Add Ingredient</h3>
       <label>Name</label>
       <input onChange={(e) => handleNameChange(e)} type="text" name="ingredient_name"/>
+      {ingredientResults && ingredientResults.length > 0 &&
+        <ResultsList results={ingredientResults}/>
+      }
       <label>Quantity</label>
       <input type="number" name="ingredient_quantity"/>
       <label>Unit of Measure</label>
       <input onChange={(e) => handleUnitofMeasureChange(e)} type="text" name="uom"/>
-      <button>Add Ingredient</button>
+      <button onClick={handleAddIngredient}>Add Ingredient</button>
     </div>
   );
 }

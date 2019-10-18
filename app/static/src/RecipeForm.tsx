@@ -12,6 +12,7 @@ import axiosClient from "./axiosClient";
 
 function RecipeForm(): JSX.Element {
   const [recipeName, setRecipeName] = useState("");
+  const [ingredientList, setIngredientList] = useState([]);
 
   async function submitRecipe () {
     try {
@@ -38,8 +39,8 @@ function RecipeForm(): JSX.Element {
       <label>Recipe Name</label>
       <input type="text" name="recipe_name" onChange={(e) => handleChange(e)} />
       <h3>Added Ingredients:</h3>
+      <IngredientForm makeList={setIngredientList}/>
       <label>Notes</label>
-      <IngredientForm />
       <textarea name="notes" />
       <button onClick={submitRecipe}>Add Recipe</button>
     </div>
