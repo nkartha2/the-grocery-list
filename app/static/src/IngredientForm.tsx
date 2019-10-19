@@ -4,7 +4,7 @@ import axiosClient from "./axiosClient";
 type IngredientResult = {name: string, id: string};
 
 function ResultsList(results: any) {
-  const listItems = results.map((ing: IngredientResult) =>
+  const listItems = results.results.map((ing: IngredientResult) =>
     <li key={ing.id}>{ing.name}</li>
   )
   return (<ul>{listItems}</ul>);
@@ -26,13 +26,13 @@ function IngredientForm(makeList: any): JSX.Element {
         }
       }).then(
           response => {
-            setIngResults(response.request.response)
+            if (response.data && response.data.length > 0) {
+              setIngResults(response.data)
+            }
           }
         )
     } catch(e) {
       console.error(e);
-    } finally {
-      console.log(ingredientResults);
     }
   }
 
@@ -53,6 +53,8 @@ function IngredientForm(makeList: any): JSX.Element {
   const handleNameChange = (e: React.FormEvent<HTMLInputElement>) => {
     if (e && e.currentTarget && e.currentTarget.value) {
       searchIngredients(e.currentTarget.value)
+    } else {
+      setIngResults([])
     }
   }
 

@@ -28,7 +28,7 @@ def add_ingredient():
 @app.route("/api/v1/ingredient", methods=["GET"])
 def get_ingredient():
   ingredient_name = request.args.get("ingredient_name")
-  ingredient = Ingredient.query.filter_by(name=ingredient_name).limit(5)
+  ingredient = Ingredient.query.filter(Ingredient.name.match(ingredient_name)).limit(5)
   ingredients = ingredient.all()
   all_ingredients = ingredients_schema.dump(ingredients)
   return jsonify(all_ingredients)
