@@ -5,9 +5,9 @@ type IngredientResult = {name: string, id: string};
 
 function ResultsList(results: any) {
   const listItems = results.results.map((ing: IngredientResult) =>
-    <li key={ing.id}>{ing.name}</li>
+    <option key={ing.id}>{ing.name}</option>
   )
-  return (<ul>{listItems}</ul>);
+  return (<select>{listItems}</select>);
 }
 
 function IngredientForm(makeList: any): JSX.Element {
