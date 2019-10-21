@@ -3,16 +3,9 @@ import axiosClient from "./axiosClient";
 
 type IngredientResult = {name: string, id: string};
 
-function ResultsList(results: any) {
-  const listItems = results.results.map((ing: IngredientResult) =>
-    <option key={ing.id}>{ing.name}</option>
-  )
-  return (<select>{listItems}</select>);
-}
-
 function IngredientForm(makeList: any): JSX.Element {
   const [ingredientResults, setIngResults] = useState<IngredientResult[] | []>([]);
-  const [ingredientName, setIngredientName] = useState("");
+  const [ingID, setIngID] = useState("");
   const [uom, setUOM] = useState("");
   const [quantity, setQuantity] = useState("");
 
@@ -34,6 +27,19 @@ function IngredientForm(makeList: any): JSX.Element {
     } catch(e) {
       console.error(e);
     }
+  }
+
+  function ResultsList(results: any) {
+    const handleSelectChange = (value: any): any => {
+      setIngID(value);
+      console.log(ingID)
+    }
+
+    const listItems = results.results.map((ing: IngredientResult) =>
+      <option value={ing.id} key={ing.id}>{ing.name}</option>
+    )
+
+    return (<select onChange={(value) => handleSelectChange(value)}>{listItems}</select>);
   }
 
   async function getUnitofMeasure (uom: string) {
