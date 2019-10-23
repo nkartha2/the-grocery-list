@@ -1,15 +1,16 @@
 import { ADD_RECIPE_ING, REMOVE_RECIPE_ING, RecipeActionTypes } from './recipe_action_types';
+import { Ingredient } from './recipe_types';
 
-export function addRecipeIng (ingId: string): RecipeActionTypes {
+export function addRecipeIng (ingredient: Ingredient): RecipeActionTypes {
   return {
     type: ADD_RECIPE_ING,
-    id: ingId
+    payload: ingredient
   }
 }
 
-export function removeRecipeIng (ingId: string): RecipeActionTypes {
+export function removeRecipeIng (ingredient: Ingredient): RecipeActionTypes {
   return {
     type: REMOVE_RECIPE_ING,
-    id: ingId
+    payload: ingredient
   }
 }
