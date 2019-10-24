@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import IngredientForm from "./IngredientForm";
 import axiosClient from "./axiosClient";
+import { RecipeState} from "./store/recipe_types";
 
 // {
   // recipe_name: "tomato soup",
@@ -10,7 +11,7 @@ import axiosClient from "./axiosClient";
     // {ingredient_id, quantity, uom_id}, ingredient_id
 // }
 
-function RecipeForm(): JSX.Element {
+function RecipeForm(recipe: RecipeState): JSX.Element {
   const [recipeName, setRecipeName] = useState("");
   const [ingredientList, setIngredientList] = useState([]);
 

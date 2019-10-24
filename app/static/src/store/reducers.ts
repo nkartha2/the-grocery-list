@@ -1,15 +1,11 @@
 import { ADD_RECIPE_ING, REMOVE_RECIPE_ING, RecipeActionTypes } from './recipe_action_types';
-import { Ingredient } from './recipe_types';
-
-interface RecipeState {
-  ingredients: Ingredient[]
-}
+import { Ingredient, RecipeState } from './recipe_types';
 
 const initialState: RecipeState = {
   ingredients: []
 }
 
-export function RecipeReducer(
+export function recipeReducer(
   state = initialState,
   action: RecipeActionTypes
 ): RecipeState {

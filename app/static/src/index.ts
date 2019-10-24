@@ -5,7 +5,13 @@ import App from './App';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import RecipeForm from "./RecipeForm.tsx";
 import * as serviceWorker from './serviceWorker';
+import { recipereducer } from './reducers';
 
+const rootReducer = combineReducers({
+  recipe: recipeReducer
+})
+
+export type AppState = ReturnType<typeof rootReducer>
 
 const routing = (
   <Router>
