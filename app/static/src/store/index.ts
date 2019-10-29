@@ -1,5 +1,4 @@
-import React from 'react';
-import { combineReducers } from 'react-redux';
+import { combineReducers } from 'redux';
 
 import { recipeReducer } from './reducers';
 
@@ -8,3 +7,5 @@ const rootReducer = combineReducers({
 })
 
 export type AppState = ReturnType<typeof rootReducer>
+
+export default rootReducer;

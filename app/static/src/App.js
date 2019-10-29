@@ -1,8 +1,8 @@
 import React from 'react';
 import { createStore } from 'redux';
-import reducer from './store/index';
+import rootReducer from './store/index';
 
-const store = createStore(reducer);
+const store = createStore(rootReducer);
 
 function App() {
   return (
