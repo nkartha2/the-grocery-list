@@ -8,12 +8,11 @@ import { RecipeState} from "./store/recipe_types";
   // recipe_link: "https://minimalistbaker.com/creamy-roasted-red-pepper-tomato-soup/",
   // recipe_notes: "",
   // ingredients: [
-    // {ingredient_id, quantity, uom_id}, ingredient_id
+    // {ingredient_id: 2, quantity: 1, uom_id: 4},
 // }
 
 function RecipeForm(recipe: RecipeState): JSX.Element {
   const [recipeName, setRecipeName] = useState("");
-  const [ingredientList, setIngredientList] = useState([]);
 
   async function submitRecipe () {
     try {
@@ -40,7 +39,7 @@ function RecipeForm(recipe: RecipeState): JSX.Element {
       <label>Recipe Name</label>
       <input type="text" name="recipe_name" onChange={(e) => handleChange(e)} />
       <h3>Added Ingredients:</h3>
-      <IngredientForm makeList={setIngredientList}/>
+      <IngredientForm />
       <label>Notes</label>
       <textarea name="notes" />
       <button onClick={submitRecipe}>Add Recipe</button>

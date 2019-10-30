@@ -1,5 +1,5 @@
 import { ADD_RECIPE_ING, REMOVE_RECIPE_ING, RecipeActionTypes } from './recipe_action_types';
-import { Ingredient, RecipeState } from './recipe_types';
+import { RecipeState } from './recipe_types';
 
 const initialState: RecipeState = {
   ingredients: []

@@ -3,9 +3,9 @@ import axiosClient from "./axiosClient";
 
 type IngredientResult = {name: string, id: string};
 
-function IngredientForm(makeList: any): JSX.Element {
+function IngredientForm(): JSX.Element {
   const [ingredientResults, setIngResults] = useState<IngredientResult[] | []>([]);
-  const [ingID, setIngID] = useState("");
+  const [ing, setIng] = useState<IngredientResult| null>(null);
   const [uom, setUOM] = useState("");
   const [quantity, setQuantity] = useState("");
 
@@ -30,16 +30,20 @@ function IngredientForm(makeList: any): JSX.Element {
   }
 
   function ResultsList(results: any) {
-    const handleSelectChange = (value: any): any => {
-      setIngID(value);
-      console.log(ingID)
+    const handleSelectChange = (e: any): any => {
+      if (e && e.currentTarget && e.currentTarget.value) {
+        console.log(e.currentTarget.value)
+        const selectedIng = ingredientResults[e.currentTarget.value];
+        setIng(selectedIng);
+        console.log(ing)
+      }
     }
 
-    const listItems = results.results.map((ing: IngredientResult) =>
-      <option value={ing.id} key={ing.id}>{ing.name}</option>
+    const listItems = results.results.map((ing: IngredientResult, index: number) =>
+      <option value={index} key={ing.id}>{ing.name}</option>
     )
 
-    return (<select onChange={(value) => handleSelectChange(value)}>{listItems}</select>);
+    return (<select onChange={(data) => handleSelectChange(data)}>{listItems}</select>);
   }
 
   async function getUnitofMeasure (uom: string) {
@@ -70,10 +74,6 @@ function IngredientForm(makeList: any): JSX.Element {
     }
   }
 
-  const handleAddIngredient = () => {
-    makeList();
-  }
-
   return (
     <div>
       <h3>Add Ingredient</h3>
@@ -86,7 +86,7 @@ function IngredientForm(makeList: any): JSX.Element {
       <input type="number" name="ingredient_quantity"/>
       <label>Unit of Measure</label>
       <input onChange={(e) => handleUnitofMeasureChange(e)} type="text" name="uom"/>
-      <button onClick={handleAddIngredient}>Add Ingredient</button>
+      <button onClick={() => console.log('hi for now')}>Add Ingredient</button>
     </div>
   );
 }

@@ -1,9 +1,19 @@
 export interface RecipeState {
-  ingredients: Ingredient[]
+  ingredients: AddIngredient[]
 }
 
 export interface Ingredient {
   id: string,
+  name: string
+}
+
+export interface UOM {
+  id: string,
+  name: string
+}
+
+export interface AddIngredient {
+  ing: Ingredient,
   quantity: number,
-  uom: string
+  uom: UOM
 }
