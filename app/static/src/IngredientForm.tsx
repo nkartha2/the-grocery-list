@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axiosClient from "./axiosClient";
-
-type IngredientResult = {name: string, id: string};
+import { Ingredient, UOM } from "./store/recipe_types"
 
 function IngredientForm(): JSX.Element {
-  const [ingredientResults, setIngResults] = useState<IngredientResult[] | []>([]);
-  const [ing, setIng] = useState<IngredientResult| null>(null);
-  const [uom, setUOM] = useState("");
+  const [ingredientResults, setIngResults] = useState<Ingredient[] | []>([]);
+  const [ing, setIng] = useState<Ingredient| null>(null);
+  const [ingName, setIngName] = useState<string>("");
+  const [uomResults, setUOMResults] = useState<UOM[] | []>([]);
   const [quantity, setQuantity] = useState("");
 
   async function searchIngredients (ingredName: string) {
@@ -32,14 +32,13 @@ function IngredientForm(): JSX.Element {
   function ResultsList(results: any) {
     const handleSelectChange = (e: any): any => {
       if (e && e.currentTarget && e.currentTarget.value) {
-        console.log(e.currentTarget.value)
         const selectedIng = ingredientResults[e.currentTarget.value];
         setIng(selectedIng);
-        console.log(ing)
+        setIngName(selectedIng.name)
       }
     }
 
-    const listItems = results.results.map((ing: IngredientResult, index: number) =>
+    const listItems = results.results.map((ing: Ingredient, index: number) =>
       <option value={index} key={ing.id}>{ing.name}</option>
     )
 
@@ -54,7 +53,13 @@ function IngredientForm(): JSX.Element {
         params: {
           "uom": uom
         }
-      })
+      }).then(
+        response => {
+          if (response.data && response.data.length > 0) {
+            setUOMResults(response.data)
+          }
+        }
+      )
     } catch(e) {
         console.error(e);
       }
@@ -63,8 +68,12 @@ function IngredientForm(): JSX.Element {
   const handleNameChange = (e: React.FormEvent<HTMLInputElement>) => {
     if (e && e.currentTarget && e.currentTarget.value) {
       searchIngredients(e.currentTarget.value)
+      setIngName(e.currentTarget.value)
+      setIng(null)
     } else {
       setIngResults([])
+      setIng(null)
+      setIngName("")
     }
   }
 
@@ -78,14 +87,22 @@ function IngredientForm(): JSX.Element {
     <div>
       <h3>Add Ingredient</h3>
       <label>Name</label>
-      <input onChange={(e) => handleNameChange(e)} type="text" name="ingredient_name"/>
-      {ingredientResults && ingredientResults.length > 0 &&
+      <input
+        value={ingName ? ingName : ""}
+        onChange={(e) => handleNameChange(e)}
+        type="text"
+        name="ingredient_name"
+      />
+      {!ing && ingredientResults && ingredientResults.length > 0 &&
         <ResultsList results={ingredientResults}/>
       }
       <label>Quantity</label>
       <input type="number" name="ingredient_quantity"/>
       <label>Unit of Measure</label>
       <input onChange={(e) => handleUnitofMeasureChange(e)} type="text" name="uom"/>
+      {!ing && uomResults && uomResults.length > 0 &&
+        <ResultsList results={ingredientResults}/>
+      }
       <button onClick={() => console.log('hi for now')}>Add Ingredient</button>
     </div>
   );
