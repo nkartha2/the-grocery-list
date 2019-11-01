@@ -36,16 +36,14 @@ def get_ingredient():
 @app.route("/api/v1/uom", methods=["GET"])
 def get_uom():
   request_uom = request.args.get("uom")
-  uom = UnitOfMeasure.query.filter_by(name=request_uom).limit(5)
+  uom = UnitOfMeasure.query.filter(UnitOfMeasure.name.match(request_uom)).limit(5)
   uoms = uom.all()
   all_uoms = ingredients_schema.dump(uoms)
   return jsonify(all_uoms)
 
 @app.route("/api/v1/add/recipe", methods=["POST"])
 def add_recipe():
-  print(request)
   recipe_name = request.form.get("recipe_name")
-  print("RECIPE NAME", recipe_name)
   return jsonify(recipe_name)
 
 @app.route("/admin/ingredients", methods=["POST"])

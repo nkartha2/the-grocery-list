@@ -39,10 +39,21 @@ function IngredientForm(): JSX.Element {
     }
 
     const listItems = results.results.map((ing: Ingredient, index: number) =>
-      <option value={index} key={ing.id}>{ing.name}</option>
+      <option
+        value={index}
+        key={ing.id}
+      >
+          {ing.name}
+      </option>
     )
-
-    return (<select onChange={(data) => handleSelectChange(data)}>{listItems}</select>);
+    return (
+      <select
+        onChange={
+          (data) => handleSelectChange(data)
+        }>
+          {listItems}
+        </select>
+      );
   }
 
   async function getUnitofMeasure (uom: string) {
@@ -61,8 +72,8 @@ function IngredientForm(): JSX.Element {
         }
       )
     } catch(e) {
-        console.error(e);
-      }
+      console.error(e);
+    }
   }
 
   const handleNameChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -100,8 +111,8 @@ function IngredientForm(): JSX.Element {
       <input type="number" name="ingredient_quantity"/>
       <label>Unit of Measure</label>
       <input onChange={(e) => handleUnitofMeasureChange(e)} type="text" name="uom"/>
-      {!ing && uomResults && uomResults.length > 0 &&
-        <ResultsList results={ingredientResults}/>
+      {uomResults && uomResults.length > 0 &&
+        <ResultsList results={uomResults}/>
       }
       <button onClick={() => console.log('hi for now')}>Add Ingredient</button>
     </div>
