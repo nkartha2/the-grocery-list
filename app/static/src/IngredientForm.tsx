@@ -94,9 +94,21 @@ function IngredientForm(): JSX.Element {
     }
   }
 
+  const addIngredient = () => {
+    console.log(quantity)
+    console.log(ing)
+  }
+
   return (
     <div>
       <h3>Add Ingredient</h3>
+      <label>Quantity</label>
+      <input onChange={(e) => setQuantity(e.currentTarget.value)} type="number" name="ingredient_quantity"/>
+      <label>Unit of Measure</label>
+      <input onChange={(e) => handleUnitofMeasureChange(e)} type="text" name="uom"/>
+      {uomResults && uomResults.length > 0 &&
+        <ResultsList results={uomResults}/>
+      }
       <label>Name</label>
       <input
         value={ingName ? ingName : ""}
@@ -107,14 +119,7 @@ function IngredientForm(): JSX.Element {
       {!ing && ingredientResults && ingredientResults.length > 0 &&
         <ResultsList results={ingredientResults}/>
       }
-      <label>Quantity</label>
-      <input type="number" name="ingredient_quantity"/>
-      <label>Unit of Measure</label>
-      <input onChange={(e) => handleUnitofMeasureChange(e)} type="text" name="uom"/>
-      {uomResults && uomResults.length > 0 &&
-        <ResultsList results={uomResults}/>
-      }
-      <button onClick={() => console.log('hi for now')}>Add Ingredient</button>
+      <button onClick={() => addIngredient()}>Add Ingredient</button>
     </div>
   );
 }
