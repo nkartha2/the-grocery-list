@@ -33,11 +33,15 @@ function RecipeForm(recipe: RecipeState): JSX.Element {
   }
 
   return (
-    <div>
-      <label>Recipe Link</label>
-      <input type="url" name="recipe_link"/>
-      <label>Recipe Name</label>
-      <input type="text" name="recipe_name" onChange={(e) => handleChange(e)} />
+    <div style={{width: "500px", margin: "30px auto"}}>
+      <div style={{display: "block", margin: "10px 0px"}}>
+        <label>Recipe Link </label>
+        <input type="url" name="recipe_link"/>
+      </div>
+      <div style={{display: "block", margin: "10px 0px"}}>
+        <label>Recipe Name </label>
+        <input type="text" name="recipe_name" onChange={(e) => handleChange(e)} />
+      </div>
       <h3>Added Ingredients:</h3>
       <IngredientForm />
       <label>Notes</label>
