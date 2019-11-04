@@ -102,24 +102,28 @@ function IngredientForm(): JSX.Element {
   return (
     <div>
       <h3>Add Ingredient</h3>
-      <label>Quantity</label>
-      <input onChange={(e) => setQuantity(e.currentTarget.value)} type="number" name="ingredient_quantity"/>
-      <label>Unit of Measure</label>
-      <input onChange={(e) => handleUnitofMeasureChange(e)} type="text" name="uom"/>
-      {uomResults && uomResults.length > 0 &&
-        <ResultsList results={uomResults}/>
-      }
-      <label>Name</label>
-      <input
-        value={ingName ? ingName : ""}
-        onChange={(e) => handleNameChange(e)}
-        type="text"
-        name="ingredient_name"
-      />
-      {!ing && ingredientResults && ingredientResults.length > 0 &&
-        <ResultsList results={ingredientResults}/>
-      }
-      <button onClick={() => addIngredient()}>Add Ingredient</button>
+      <form
+        autoComplete="off"
+      >
+        <label>Quantity</label>
+        <input onChange={(e) => setQuantity(e.currentTarget.value)} type="number" name="ingredient_quantity"/>
+        <label>Unit of Measure</label>
+        <input onChange={(e) => handleUnitofMeasureChange(e)} type="text" name="uom"/>
+        {uomResults && uomResults.length > 0 &&
+          <ResultsList results={uomResults}/>
+        }
+        <label>Name</label>
+        <input
+          value={ingName ? ingName : ""}
+          onChange={(e) => handleNameChange(e)}
+          type="text"
+          name="ingredient_name"
+        />
+        {!ing && ingredientResults && ingredientResults.length > 0 &&
+          <ResultsList results={ingredientResults}/>
+        }
+        <button onClick={() => addIngredient()}>Add Ingredient</button>
+      </form>
     </div>
   );
 }
