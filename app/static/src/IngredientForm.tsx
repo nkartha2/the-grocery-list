@@ -30,30 +30,28 @@ function IngredientForm(): JSX.Element {
   }
 
   function ResultsList(results: any) {
-    const handleSelectChange = (e: any): any => {
-      if (e && e.currentTarget && e.currentTarget.value) {
-        const selectedIng = ingredientResults[e.currentTarget.value];
-        setIng(selectedIng);
-        setIngName(selectedIng.name)
-      }
+    const handleSelect = (e: any): any => {
+      const selectedIng = ingredientResults[e.currentTarget.value];
+      setIng(selectedIng);
+      setIngName(selectedIng.name);
     }
 
     const listItems = results.results.map((ing: Ingredient, index: number) =>
-      <option
+      <li
         value={index}
         key={ing.id}
+        onClick={(e) => handleSelect(e)}
+        style={{listStyleType: "none", border: "1px solid black"}}
       >
-          {ing.name}
-      </option>
+        {ing.name}
+      </li>
     )
     return (
-      <select
-        onChange={
-          (data) => handleSelectChange(data)
-        }>
-          {listItems}
-        </select>
-      );
+      <ul
+      >
+        {listItems}
+      </ul>
+    );
   }
 
   async function getUnitofMeasure (uom: string) {
