@@ -7,6 +7,7 @@ function IngredientForm(): JSX.Element {
   const [ing, setIng] = useState<Ingredient| null>(null);
   const [ingName, setIngName] = useState<string>("");
   const [uomResults, setUOMResults] = useState<UOM[] | []>([]);
+  const [uom, setUOM] = useState<UOM| null>(null);
   const [quantity, setQuantity] = useState("");
 
   async function searchIngredients (ingredName: string) {
@@ -29,25 +30,33 @@ function IngredientForm(): JSX.Element {
     }
   }
 
-  function ResultsList(results: any) {
+  function ResultsList(results: any, setItem: Function) {
     const handleSelect = (e: any): any => {
-      const selectedIng = ingredientResults[e.currentTarget.value];
-      setIng(selectedIng);
-      setIngName(selectedIng.name);
+      const selectedItem = results.results[e.currentTarget.value];
+      console.log(setItem)
     }
 
-    const listItems = results.results.map((ing: Ingredient, index: number) =>
+    const listItems = results.results.map((result: Ingredient | UOM, index: number) =>
       <li
         value={index}
-        key={ing.id}
+        key={result.id}
         onClick={(e) => handleSelect(e)}
         style={{listStyleType: "none", border: "1px solid black"}}
       >
-        {ing.name}
+        <span style={{padding: "5px"}}>
+          {result.name}
+        </span>
       </li>
     )
     return (
       <ul
+        style={{
+          position: "absolute",
+          top: "0px",
+          background: "white",
+          left: "0px",
+          padding: "0px"
+        }}
       >
         {listItems}
       </ul>
@@ -89,6 +98,9 @@ function IngredientForm(): JSX.Element {
   const handleUnitofMeasureChange = (e: React.FormEvent<HTMLInputElement>) => {
     if (e && e.currentTarget && e.currentTarget.value) {
       getUnitofMeasure(e.currentTarget.value)
+    } else {
+      setUOM(null);
+      setUOMResults([]);
     }
   }
 
@@ -103,23 +115,55 @@ function IngredientForm(): JSX.Element {
       <form
         autoComplete="off"
       >
-        <label>Quantity</label>
-        <input onChange={(e) => setQuantity(e.currentTarget.value)} type="number" name="ingredient_quantity"/>
-        <label>Unit of Measure</label>
-        <input onChange={(e) => handleUnitofMeasureChange(e)} type="text" name="uom"/>
-        {uomResults && uomResults.length > 0 &&
-          <ResultsList results={uomResults}/>
-        }
-        <label>Name</label>
-        <input
-          value={ingName ? ingName : ""}
-          onChange={(e) => handleNameChange(e)}
-          type="text"
-          name="ingredient_name"
-        />
-        {!ing && ingredientResults && ingredientResults.length > 0 &&
-          <ResultsList results={ingredientResults}/>
-        }
+        <div
+          style={{display: "block", margin: "10px 0px"}}
+        >
+          <label>Quantity</label>
+          <input onChange={(e) => setQuantity(e.currentTarget.value)} type="number" name="ingredient_quantity"/>
+        </div>
+        <div
+          style={{display: "block", margin: "10px 0px"}}
+        >
+          <label>Unit of Measure</label>
+          <div
+            className="items-list"
+            style={{
+              position: "relative"
+            }}
+          >
+            <input onChange={(e) => handleUnitofMeasureChange(e)} type="text" name="uom"/>
+            {!uom && uomResults && uomResults.length > 0 &&
+              <ResultsList
+                setItem={setUOM}
+                results={uomResults}
+              />
+            }
+          </div>
+        </div>
+        <div
+          style={{display: "block", margin: "10px 0px"}}
+        >
+          <label>Name</label>
+          <div
+            className="items-list"
+            style={{
+              position: "relative"
+            }}
+          >
+            <input
+              value={ingName ? ingName : ""}
+              onChange={(e) => handleNameChange(e)}
+              type="text"
+              name="ingredient_name"
+            />
+            {!ing && ingredientResults && ingredientResults.length > 0 &&
+              <ResultsList
+                setItem={setIng}
+                results={ingredientResults}
+              />
+            }
+          </div>
+        </div>
         <button onClick={() => addIngredient()}>Add Ingredient</button>
       </form>
     </div>
