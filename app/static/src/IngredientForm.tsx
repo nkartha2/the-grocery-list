@@ -45,7 +45,8 @@ function IngredientForm(): JSX.Element {
   const [uom, setUOM] = useState<UOM| null>(null);
   const [uomName, setUomName] = useState<string>("");
   const [quantity, setQuantity] = useState("");
-  const [showDropdown, setShowDropdown] = useState<boolean>(false);
+  const [showUOMDropdown, setShowUOMDropdown] = useState<boolean>(false);
+  const [showIngDropdown, setShowIngDropdown] = useState<boolean>(false);
 
   async function searchIngredients (ingredName: string) {
     try {
@@ -141,12 +142,12 @@ function IngredientForm(): JSX.Element {
             <input
               value={ uom ? uom.name : uomName}
               onChange={(e) => handleUnitofMeasureChange(e)}
-              onFocus={(e) => setShowDropdown(true)}
-              onBlur={(e) => setShowDropdown(false)}
+              onFocus={(e) => setShowUOMDropdown(true)}
+              onBlur={(e) => setShowUOMDropdown(false)}
               type="text"
               name="uom"
             />
-            {!uom && showDropdown && uomResults && uomResults.length > 0 &&
+            {!uom && showUOMDropdown && uomResults && uomResults.length > 0 &&
               <ResultsList
                 setItem={setUOM}
                 results={uomResults}
@@ -167,12 +168,12 @@ function IngredientForm(): JSX.Element {
             <input
               value={ ing ? ing.name : ingName}
               onChange={(e) => handleNameChange(e)}
-              onFocus={(e) => setShowDropdown(true)}
-              onBlur={(e) => setShowDropdown(false)}
+              onFocus={(e) => setShowIngDropdown(true)}
+              onBlur={(e) => setShowIngDropdown(false)}
               type="text"
               name="ingredient_name"
             />
-            {!ing && showDropdown && ingredientResults && ingredientResults.length > 0 &&
+            {!ing && showIngDropdown && ingredientResults && ingredientResults.length > 0 &&
               <ResultsList
                 setItem={setIng}
                 results={ingredientResults}
