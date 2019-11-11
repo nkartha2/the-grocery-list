@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axiosClient from "./axiosClient";
 import { Ingredient, UOM } from "./store/recipe_types";
+import { addRecipeIng } from "./store/actions";
 
 function ResultsList(props: {results: any, setItem: Function}): JSX.Element {
 
@@ -25,7 +26,7 @@ function ResultsList(props: {results: any, setItem: Function}): JSX.Element {
   return (
     <ul
       style={{
-        position: "absolute",
+        position: 'absolute',
         top: "0px",
         background: "white",
         left: "0px",
@@ -112,9 +113,18 @@ function IngredientForm(): JSX.Element {
     }
   }
 
-  const addIngredient = () => {
+  const addIngredient = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
     console.log(quantity)
+    console.log(uom)
     console.log(ing)
+    if (quantity && ing && uom) {
+      addRecipeIng({
+        ing: ing,
+        quantity: quantity,
+        uom: uom
+      })
+    }
   }
 
   return (
@@ -136,14 +146,13 @@ function IngredientForm(): JSX.Element {
           <div
             className="items-list"
             style={{
-              position: "relative"
+              position: "relative",
             }}
           >
             <input
               value={ uom ? uom.name : uomName}
               onChange={(e) => handleUnitofMeasureChange(e)}
               onFocus={(e) => setShowUOMDropdown(true)}
-              onBlur={(e) => setShowUOMDropdown(false)}
               type="text"
               name="uom"
             />
@@ -169,7 +178,6 @@ function IngredientForm(): JSX.Element {
               value={ ing ? ing.name : ingName}
               onChange={(e) => handleNameChange(e)}
               onFocus={(e) => setShowIngDropdown(true)}
-              onBlur={(e) => setShowIngDropdown(false)}
               type="text"
               name="ingredient_name"
             />
@@ -181,7 +189,7 @@ function IngredientForm(): JSX.Element {
             }
           </div>
         </div>
-        <button onClick={() => addIngredient()}>Add Ingredient</button>
+        <button onClick={(e) => addIngredient(e)}>Add Ingredient</button>
       </form>
     </div>
   );
