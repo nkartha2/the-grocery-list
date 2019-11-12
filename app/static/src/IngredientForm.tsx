@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axiosClient from "./axiosClient";
 import { Ingredient, UOM } from "./store/recipe_types";
 import { addRecipeIng } from "./store/actions";
+import { connect } from 'react-redux';
 
 function ResultsList(props: {results: any, setItem: Function}): JSX.Element {
 
@@ -38,7 +39,7 @@ function ResultsList(props: {results: any, setItem: Function}): JSX.Element {
   );
 }
 
-function IngredientForm(): JSX.Element {
+function IngredientForm(props: any): JSX.Element {
   const [ingredientResults, setIngResults] = useState<Ingredient[] | []>([]);
   const [ing, setIng] = useState<Ingredient| null>(null);
   const [ingName, setIngName] = useState<string>("");
@@ -119,7 +120,7 @@ function IngredientForm(): JSX.Element {
     console.log(uom)
     console.log(ing)
     if (quantity && ing && uom) {
-      addRecipeIng({
+      props.onAddClick({
         ing: ing,
         quantity: quantity,
         uom: uom
@@ -195,4 +196,24 @@ function IngredientForm(): JSX.Element {
   );
 }
 
-export default IngredientForm;
+const mapStateToProps = (state: any) => {
+  return {state}
+}
+
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    onAddClick: (ing: Ingredient, quantity: string, uom: UOM) => dispatch(
+      addRecipeIng({
+        ing: ing,
+        quantity: quantity,
+        uom: uom
+      })
+    )
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(IngredientForm);
