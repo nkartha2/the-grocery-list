@@ -1,18 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { createStore } from 'redux';
+
+import rootReducer from './store/index';
+
 import './index.css';
 import App from './App';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
 import RecipeForm from "./RecipeForm";
 import * as serviceWorker from './serviceWorker';
 
+const store = createStore(rootReducer);
+
+
 const routing = (
-  <Router>
-    <div>
-      <Route path="/" component={App} />
-      <Route path="/add/recipe" component={RecipeForm} />
-    </div>
-  </Router>
+  <Provider store={store}>
+    <Router>
+      <div>
+        <Route path="/" component={App} />
+        <Route path="/add/recipe" component={RecipeForm} />
+      </div>
+    </Router>
+  </Provider>
 );
 
 ReactDOM.render(routing, document.getElementById('root'));

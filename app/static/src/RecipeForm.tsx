@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import IngredientForm from "./IngredientForm";
+import IngredientToBeAddedList from "./IngredientToBeAddedList";
 import axiosClient from "./axiosClient";
 import { RecipeState} from "./store/recipe_types";
 
@@ -42,7 +43,7 @@ function RecipeForm(recipe: RecipeState): JSX.Element {
         <label>Recipe Name </label>
         <input type="text" name="recipe_name" onChange={(e) => handleChange(e)} />
       </div>
-      <h3>Added Ingredients:</h3>
+      <IngredientToBeAddedList/>
       <IngredientForm />
       <label>Notes</label>
       <textarea name="notes" />
