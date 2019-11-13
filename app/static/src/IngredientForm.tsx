@@ -120,11 +120,7 @@ function IngredientForm(props: any): JSX.Element {
     console.log(uom)
     console.log(ing)
     if (quantity && ing && uom) {
-      props.onAddClick({
-        ing: ing,
-        quantity: quantity,
-        uom: uom
-      })
+      props.onAddClick(ing, quantity, uom)
     }
   }
 
