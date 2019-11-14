@@ -4,7 +4,7 @@ import { Ingredient, UOM } from "./store/recipe_types";
 import { addRecipeIng } from "./store/actions";
 import { connect } from 'react-redux';
 
-function ResultsList(props: {results: any, setItem: Function}): JSX.Element {
+function DropDownList(props: {results: any, setItem: Function}): JSX.Element {
 
   const handleSelect = (e: any): any => {
     const selectedItem = props.results[e.currentTarget.value];
@@ -49,6 +49,18 @@ function IngredientForm(props: any): JSX.Element {
   const [quantity, setQuantity] = useState("");
   const [showUOMDropdown, setShowUOMDropdown] = useState<boolean>(false);
   const [showIngDropdown, setShowIngDropdown] = useState<boolean>(false);
+
+  function resetForm () {
+    setIngResults([]);
+    setIngName("");
+    setIng(null);
+    setUOMResults([]);
+    setUOM(null);
+    setUomName("");
+    setQuantity("");
+    setShowUOMDropdown(false);
+    setShowIngDropdown(false);
+  }
 
   async function searchIngredients (ingredName: string) {
     try {
@@ -116,11 +128,9 @@ function IngredientForm(props: any): JSX.Element {
 
   const addIngredient = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    console.log(quantity)
-    console.log(uom)
-    console.log(ing)
     if (quantity && ing && uom) {
       props.onAddClick(ing, quantity, uom)
+      resetForm();
     }
   }
 
@@ -134,7 +144,12 @@ function IngredientForm(props: any): JSX.Element {
           style={{display: "block", margin: "10px 0px"}}
         >
           <label>Quantity</label>
-          <input onChange={(e) => setQuantity(e.currentTarget.value)} type="number" name="ingredient_quantity"/>
+          <input
+            value={quantity ? quantity : ""}
+            onChange={(e) => setQuantity(e.currentTarget.value)}
+            type="number"
+            name="ingredient_quantity"
+          />
         </div>
         <div
           style={{display: "block", margin: "10px 0px"}}
@@ -154,7 +169,7 @@ function IngredientForm(props: any): JSX.Element {
               name="uom"
             />
             {!uom && showUOMDropdown && uomResults && uomResults.length > 0 &&
-              <ResultsList
+              <DropDownList
                 setItem={setUOM}
                 results={uomResults}
               />
@@ -179,7 +194,7 @@ function IngredientForm(props: any): JSX.Element {
               name="ingredient_name"
             />
             {!ing && showIngDropdown && ingredientResults && ingredientResults.length > 0 &&
-              <ResultsList
+              <DropDownList
                 setItem={setIng}
                 results={ingredientResults}
               />

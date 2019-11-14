@@ -4,10 +4,18 @@ import { connect } from 'react-redux';
 import { RecipeState } from './store/recipe_types';
 
 function IngredientsToBeAddedList(props: RecipeState): JSX.Element {
+  const items = props.ingredients.map((ingredient, index) => {
+    return (
+      <li key={index}>{ingredient.quantity} {ingredient.uom.name} {ingredient.ing.name}</li>
+    );
+  });
+
   return (
     <div>
       <h3>Recipe Ingredients:</h3>
-      {props.ingredients && props.ingredients[0] && props.ingredients[0].ing ? props.ingredients[0].ing.name : "None"}
+      <ul>
+        {items}
+      </ul>
     </div>
   );
 }
