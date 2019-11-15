@@ -1,12 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // import { AppState } from './index';
-import { RecipeState } from './store/recipe_types';
+import { removeRecipeIng } from './store/actions';
+import { RecipeState, Ingredient, AddIngredient } from './store/recipe_types';
 
-function IngredientsToBeAddedList(props: RecipeState): JSX.Element {
-  const items = props.ingredients.map((ingredient, index) => {
+function IngredientsToBeAddedList(props: any): JSX.Element {
+  const items = props.ingredients.map((ingredient: AddIngredient, index: number) => {
     return (
-      <li key={index}>{ingredient.quantity} {ingredient.uom.name} {ingredient.ing.name}</li>
+      <li key={index}>
+        <span
+          style={{margin: "5px"}}
+          onClick={(e) => props.onRemoveClick(ingredient)}
+        >
+          x
+        </span>
+        {ingredient.quantity}
+        {ingredient.uom.name}
+        {ingredient.ing.name}
+      </li>
     );
   });
 
@@ -26,6 +37,14 @@ function mapStateToProps(state: any): RecipeState {
   }
 }
 
+
+function mapDispatchToProps(dispatch: any) {
+  return {
+    onRemoveClick: (ingredient: AddIngredient) => dispatch(removeRecipeIng(ingredient))
+  }
+}
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(IngredientsToBeAddedList)

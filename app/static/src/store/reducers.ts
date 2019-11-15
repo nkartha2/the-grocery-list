@@ -15,6 +15,11 @@ export function recipeReducer(
         ingredients: [...state.ingredients, action.payload]
       }
     }
+    case REMOVE_RECIPE_ING: {
+      return {
+        ingredients: [...state.ingredients]
+      }
+    }
     default:
       return state
   }
