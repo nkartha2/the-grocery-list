@@ -8,9 +8,9 @@ export function addRecipeIng (ingredient: AddIngredient): RecipeActionTypes {
   }
 }
 
-export function removeRecipeIng (ingredient: AddIngredient): RecipeActionTypes {
+export function removeRecipeIng (ingIndex: number): RecipeActionTypes {
   return {
     type: REMOVE_RECIPE_ING,
-    payload: ingredient
+    payload: ingIndex
   }
 }

@@ -10,7 +10,7 @@ interface AddRecipeIngAction {
 
 interface RemoveRecipeIngAction {
   type: typeof REMOVE_RECIPE_ING,
-  payload: AddIngredient
+  payload: number
 }
 
 export type RecipeActionTypes = AddRecipeIngAction | RemoveRecipeIngAction;

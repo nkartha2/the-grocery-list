@@ -16,8 +16,9 @@ export function recipeReducer(
       }
     }
     case REMOVE_RECIPE_ING: {
+      console.log(action.payload)
       return {
-        ingredients: [...state.ingredients]
+        ingredients: [...state.ingredients.slice(0, action.payload), ...state.ingredients.slice(action.payload + 1)]
       }
     }
     default:

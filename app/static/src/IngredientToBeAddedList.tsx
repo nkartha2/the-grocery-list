@@ -9,8 +9,8 @@ function IngredientsToBeAddedList(props: any): JSX.Element {
     return (
       <li key={index}>
         <span
-          style={{margin: "5px"}}
-          onClick={(e) => props.onRemoveClick(ingredient)}
+          style={{padding: "5px"}}
+          onClick={(e) => props.onRemoveClick(index)}
         >
           x
         </span>
@@ -40,7 +40,7 @@ function mapStateToProps(state: any): RecipeState {
 
 function mapDispatchToProps(dispatch: any) {
   return {
-    onRemoveClick: (ingredient: AddIngredient) => dispatch(removeRecipeIng(ingredient))
+    onRemoveClick: (ingIndex: number) => dispatch(removeRecipeIng(ingIndex))
   }
 }
 
