@@ -128,8 +128,8 @@ function IngredientForm(props: any): JSX.Element {
 
   const addIngredient = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    if (quantity && ing && uom) {
-      props.onAddClick(ing, quantity, uom)
+    if (quantity && ing) {
+      props.onAddClick(ing, quantity, uom ? uom : "")
       resetForm();
     }
   }
