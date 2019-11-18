@@ -43,9 +43,13 @@ def get_uom():
 
 @app.route("/api/v1/add/recipe", methods=["POST"])
 def add_recipe():
-  recipe_name = request.form.get("recipe_name")
-  print(recipe_name)
-  return jsonify(recipe_name)
+  recipe = Recipe(
+    name=request.form['recipe_name'],
+    link=request.form['recipe_link'],
+    ingredients=request.form['ingredients']
+  )
+  # recipe_name = request.form['recipe_name']
+  return jsonify(recipe)
 
 @app.route("/admin/ingredients", methods=["POST"])
 def admin_add_ingredient():
