@@ -3,6 +3,8 @@ import IngredientForm from "./IngredientForm";
 import IngredientToBeAddedList from "./IngredientToBeAddedList";
 import axiosClient from "./axiosClient";
 import { RecipeState} from "./store/recipe_types";
+import { connect } from 'react-redux';
+
 
 // {
   // recipe_name: "tomato soup",
@@ -12,8 +14,9 @@ import { RecipeState} from "./store/recipe_types";
     // {ingredient_id: 2, quantity: 1, uom_id: 4},
 // }
 
-function RecipeForm(recipe: RecipeState): JSX.Element {
+function RecipeForm(props: any): JSX.Element {
   const [recipeName, setRecipeName] = useState("");
+  const [recipeLink, setRecipeLink] = useState("");
 
   async function submitRecipe () {
     try {
@@ -21,7 +24,9 @@ function RecipeForm(recipe: RecipeState): JSX.Element {
         method: "post",
         url: '/api/v1/add/recipe',
         data: {
-          "recipe_name": recipeName
+          "recipe_name": recipeName,
+          "recipe_link": recipeLink,
+          "ingredients": props.ingredients
         }
       })
     } catch(e) {
@@ -29,7 +34,12 @@ function RecipeForm(recipe: RecipeState): JSX.Element {
     }
   }
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+
+  const handleLinkChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setRecipeLink(e && e.currentTarget && e.currentTarget.value ? e.currentTarget.value : "");
+  }
+
+  const handleNameChange = (e: React.FormEvent<HTMLInputElement>) => {
     setRecipeName(e && e.currentTarget && e.currentTarget.value ? e.currentTarget.value : "");
   }
 
@@ -37,19 +47,38 @@ function RecipeForm(recipe: RecipeState): JSX.Element {
     <div style={{width: "500px", margin: "30px auto"}}>
       <div style={{display: "block", margin: "10px 0px"}}>
         <label>Recipe Link </label>
-        <input type="url" name="recipe_link"/>
+        <input
+          type="url"
+          name="recipe_link"
+          onChange={(e) => handleLinkChange(e)}
+        />
       </div>
       <div style={{display: "block", margin: "10px 0px"}}>
         <label>Recipe Name </label>
-        <input type="text" name="recipe_name" onChange={(e) => handleChange(e)} />
+        <input
+          type="text"
+          name="recipe_name"
+          onChange={(e) => handleNameChange(e)}
+        />
       </div>
       <IngredientToBeAddedList/>
       <IngredientForm />
       <label>Notes</label>
       <textarea name="notes" />
-      <button onClick={submitRecipe}>Add Recipe</button>
+      <button onClick={() => submitRecipe()}>Add Recipe</button>
     </div>
   );
 }
 
-export default RecipeForm;
+function mapStateToProps(state: any) {
+  return {
+    ingredients: state.recipe.ingredients
+  }
+}
+
+
+export default connect(
+  mapStateToProps
+)(
+  RecipeForm
+);
