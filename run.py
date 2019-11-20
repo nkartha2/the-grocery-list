@@ -48,12 +48,15 @@ def add_recipe():
     link=request.json['recipe_link']
   )
 
+  db.session.add(recipe)
+
   for ingredient in request.json['ingredients']:
     # for ingredient in ingredients list
     # find ingredient
-    # add ingredient....with new recipe id
+    # add to ingredients....with new recipe id
     print(ingredient)
 
+  db.session.commit()
   return 'to do'
 
 @app.route("/admin/ingredients", methods=["POST"])
