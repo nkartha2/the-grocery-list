@@ -51,13 +51,19 @@ def add_recipe():
   db.session.add(recipe)
 
   for ingredient in request.json['ingredients']:
-    # for ingredient in ingredients list
-    # find ingredient
-    # add to ingredients....with new recipe id
-    print(ingredient)
+    ingredient_to_add = Ingredients(
+      ingredient_id=ingredient['ing']['id'],
+      quantity=ingredient['quantity'],
+      recipe_id=recipe.id,
+    )
+    if ingredient['uom']:
+      uom_id = ingredient['uom']['id']
+      ingredient_to_add.measure_id = uom_id
+
+    db.session.add(ingredient_to_add)
 
   db.session.commit()
-  return 'to do'
+  return 'to do FIX RECIPE ID'
 
 @app.route("/admin/ingredients", methods=["POST"])
 def admin_add_ingredient():
@@ -65,6 +71,7 @@ def admin_add_ingredient():
       name=request.form['ingredient_name'],
       ingredient_type=request.form['ingredient_type']
     )
+
     db.session.add(ingredient)
     db.session.commit()
     return render_template("ingredient_admin.html")
