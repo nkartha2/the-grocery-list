@@ -49,6 +49,7 @@ def add_recipe():
   )
 
   db.session.add(recipe)
+  db.session.flush()
 
   for ingredient in request.json['ingredients']:
     ingredient_to_add = Ingredients(
