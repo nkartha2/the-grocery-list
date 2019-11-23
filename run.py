@@ -3,6 +3,7 @@ from flask_cors import CORS
 from app.models import Ingredient, Ingredients, Recipe, UnitOfMeasure
 from app import app, db
 from app.schemas import ingredients_schema
+from app.views.ingredient_views import admin_view
 
 CORS(app)
 
@@ -12,11 +13,6 @@ CORS(app)
 def recipe():
   return render_template("recipe.html")
 
-# admin ingredients
-@app.route("/admin/ingredients", methods=["GET"])
-# what gets executed when arriving on the main page
-def admin_ingredients():
-  return render_template("ingredient_admin.html")
 
 @app.route("/api/v1/add/ingredient", methods=["POST"])
 def add_ingredient():
