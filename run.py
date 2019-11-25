@@ -6,7 +6,7 @@ from app.schemas import ingredients_schema
 from app.views.ingredient_views import admin_view
 
 CORS(app)
-
+app.register_blueprint(admin_view)
 # the default page
 @app.route("/", methods=["GET", "POST"])
 # what gets executed when arriving on the main page
@@ -14,12 +14,12 @@ def recipe():
   return render_template("recipe.html")
 
 
-@app.route("/api/v1/add/ingredient", methods=["POST"])
-def add_ingredient():
-  ingredient = db.session.query(Ingredient).limit(5)
-  ingredients = ingredient.all()
-  all_ingredients = ingredients_schema.dump(ingredients)
-  return jsonify(all_ingredients)
+# @app.route("/api/v1/add/ingredient", methods=["POST"])
+# def add_ingredient():
+#   ingredient = db.session.query(Ingredient).limit(5)
+#   ingredients = ingredient.all()
+#   all_ingredients = ingredients_schema.dump(ingredients)
+#   return jsonify(all_ingredients)
 
 @app.route("/api/v1/ingredient", methods=["GET"])
 def get_ingredient():
@@ -62,16 +62,16 @@ def add_recipe():
   db.session.commit()
   return 'to do FIX RECIPE ID'
 
-@app.route("/admin/ingredients", methods=["POST"])
-def admin_add_ingredient():
-    ingredient = Ingredient(
-      name=request.form['ingredient_name'],
-      ingredient_type=request.form['ingredient_type']
-    )
+# @app.route("/admin/ingredients", methods=["POST"])
+# def admin_add_ingredient():
+#     ingredient = Ingredient(
+#       name=request.form['ingredient_name'],
+#       ingredient_type=request.form['ingredient_type']
+#     )
 
-    db.session.add(ingredient)
-    db.session.commit()
-    return render_template("ingredient_admin.html")
+#     db.session.add(ingredient)
+#     db.session.commit()
+#     return render_template("ingredient_admin.html")
 
 @app.route("/admin/uom", methods=["GET"])
 def admin_uom():
