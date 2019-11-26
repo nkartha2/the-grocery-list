@@ -14,13 +14,6 @@ def recipe():
   return render_template("recipe.html")
 
 
-# @app.route("/api/v1/add/ingredient", methods=["POST"])
-# def add_ingredient():
-#   ingredient = db.session.query(Ingredient).limit(5)
-#   ingredients = ingredient.all()
-#   all_ingredients = ingredients_schema.dump(ingredients)
-#   return jsonify(all_ingredients)
-
 @app.route("/api/v1/ingredient", methods=["GET"])
 def get_ingredient():
   ingredient_name = request.args.get("ingredient_name")

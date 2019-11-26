@@ -4,14 +4,14 @@ from app.models import Ingredient
 
 from app import app, db
 
-admin_view = Blueprint('admin_view', __name__)
+admin_view = Blueprint('admin_view', __name__, url_prefix="/admin")
 
 # admin ingredients
-@admin_view.route("/admin/ingredients", methods=["GET"])
+@admin_view.route("/ingredients/", methods=["GET"])
 def admin_ingredients():
   return render_template("ingredient_admin.html")
 
-@admin_view.route("/admin/ingredients", methods=["POST"])
+@admin_view.route("/ingredients/", methods=["POST"])
 def admin_add_ingredient():
     ingredient = Ingredient(
       name=request.form['ingredient_name'],
