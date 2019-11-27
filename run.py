@@ -3,10 +3,10 @@ from flask_cors import CORS
 from app.models import Ingredient, Ingredients, Recipe, UnitOfMeasure
 from app import app, db
 from app.schemas import ingredients_schema
-from app.views.ingredient_views import admin_view
+from app.views.ingredient_views import ingredient_admin_view
 
 CORS(app)
-app.register_blueprint(admin_view)
+app.register_blueprint(ingredient_admin_view)
 # the default page
 @app.route("/", methods=["GET", "POST"])
 # what gets executed when arriving on the main page
@@ -55,30 +55,20 @@ def add_recipe():
   db.session.commit()
   return 'to do FIX RECIPE ID'
 
-# @app.route("/admin/ingredients", methods=["POST"])
-# def admin_add_ingredient():
-#     ingredient = Ingredient(
-#       name=request.form['ingredient_name'],
-#       ingredient_type=request.form['ingredient_type']
+
+# @app.route("/admin/uom", methods=["GET"])
+# def admin_uom():
+#   return render_template("uom.html")
+
+
+# @app.route("/admin/uom", methods=["POST"])
+# def admin_add_uom():
+#     uom = UnitOfMeasure(
+#       name=request.form['uom_name'],
 #     )
-
-#     db.session.add(ingredient)
+#     db.session.add(uom)
 #     db.session.commit()
-#     return render_template("ingredient_admin.html")
-
-@app.route("/admin/uom", methods=["GET"])
-def admin_uom():
-  return render_template("uom.html")
-
-
-@app.route("/admin/uom", methods=["POST"])
-def admin_add_uom():
-    uom = UnitOfMeasure(
-      name=request.form['uom_name'],
-    )
-    db.session.add(uom)
-    db.session.commit()
-    return render_template("uom.html")
+#     return render_template("uom.html")
 
 # python assigns name __main__ to script when executed
 # if we import another script, if statement will
