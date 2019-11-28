@@ -3,7 +3,7 @@ from app.models import Ingredient
 
 from app import app, db
 
-ingredient_admin_view = Blueprint('admin_view', __name__, url_prefix="/admin")
+ingredient_admin_view = Blueprint('ingredient_admin_view', __name__, url_prefix="/admin")
 
 # admin ingredients
 @ingredient_admin_view.route("/ingredients/", methods=["GET"])
