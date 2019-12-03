@@ -1,8 +1,11 @@
-from flask import render_template, request, jsonify
-from app.models import Recipe, Ingredient, Ingredients
-from app import app, db
+from flask import render_template, Blueprint, request, jsonify
+from app.models import UnitOfMeasure, Recipe, Ingredient, Ingredients
+from app import db
+from app.schemas import ingredients_schema
 
-@app.route("/api/v1/ingredient", methods=["GET"])
+recipe_view = Blueprint('recipe_view', __name__, url_prefix="/api/v1/")
+
+@recipe_view.route("/ingredient", methods=["GET"])
 def get_ingredient():
   ingredient_name = request.args.get("ingredient_name")
   ingredient = Ingredient.query.filter(Ingredient.name.match(ingredient_name)).limit(5)
@@ -10,7 +13,7 @@ def get_ingredient():
   all_ingredients = ingredients_schema.dump(ingredients)
   return jsonify(all_ingredients)
 
-@app.route("/api/v1/uom", methods=["GET"])
+@recipe_view.route("/uom", methods=["GET"])
 def get_uom():
   request_uom = request.args.get("uom")
   uom = UnitOfMeasure.query.filter(UnitOfMeasure.name.match(request_uom)).limit(5)
@@ -20,13 +23,13 @@ def get_uom():
 
 
 # the default page
-@app.route("/", methods=["GET", "POST"])
+@recipe_view.route("/", methods=["GET", "POST"])
 # what gets executed when arriving on the main page
 def recipe():
   return render_template("recipe.html")
 
 
-@app.route("/api/v1/add/recipe", methods=["POST"])
+@recipe_view.route("/add/recipe", methods=["POST"])
 def add_recipe():
   recipe = Recipe(
     name=request.json['recipe_name'],

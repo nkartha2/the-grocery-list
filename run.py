@@ -4,12 +4,14 @@ from app.models import Ingredient, Ingredients, Recipe, UnitOfMeasure
 from app import app, db
 from app.schemas import ingredients_schema
 
-from app.views.ingredient_views import ingredient_admin_view
-from app.views.uom_views import uom_admin_view
+from app.views.admin_ingredient_views import ingredient_admin_view
+from app.views.admin_uom_views import uom_admin_view
+from app.views.recipe_views import recipe_view
 
 CORS(app)
 app.register_blueprint(ingredient_admin_view)
 app.register_blueprint(uom_admin_view)
+app.register_blueprint(recipe_view)
 
 
 # python assigns name __main__ to script when executed
