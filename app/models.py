@@ -21,7 +21,7 @@ Base = declarative_base()
 class UnitOfMeasure(db.Model):
   __tablename__ = 'unit_of_measure'
   id = Column("measure_id", Integer, primary_key=True)
-  name = Column("measure_name", String)
+  name = Column("measure_name", String, unique=True)
 
 
 class Ingredient(db.Model):

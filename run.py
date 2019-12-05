@@ -9,6 +9,7 @@ from app.views.admin_uom_views import uom_admin_view
 from app.views.recipe_views import recipe_view
 
 CORS(app)
+
 app.register_blueprint(ingredient_admin_view)
 app.register_blueprint(uom_admin_view)
 app.register_blueprint(recipe_view)
