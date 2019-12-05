@@ -57,4 +57,4 @@ class Ingredients(db.Model):
   unit_measure = relationship(UnitOfMeasure)
   measure_id = Column(Integer, ForeignKey(UnitOfMeasure.id))
   # Recipe to Ingredients is a One to Many relationship
-  recipe_id = Column(Integer, ForeignKey(Recipe.id))
+  recipe_id = Column(Integer, ForeignKey(Recipe.id), nullable=False)
