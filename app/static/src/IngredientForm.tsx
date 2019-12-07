@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Dispatch } from 'redux';
 import axiosClient from "./axiosClient";
 import { Ingredient, UOM } from "./store/recipe_types";
 import { addRecipeIng } from "./store/actions";
@@ -179,7 +180,7 @@ const mapStateToProps = (state: any) => {
 }
 
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     onAddClick: (ing: Ingredient, quantity: string, uom: UOM) => dispatch(
       addRecipeIng({
