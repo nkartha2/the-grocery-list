@@ -5,7 +5,7 @@ import { Ingredient, UOM } from "./store/recipe_types";
 import { addRecipeIng } from "./store/actions";
 import { connect } from 'react-redux';
 import DropDownList from './ui_components/DropdownSelect';
-
+import { AppState } from './store/index';
 
 function IngredientForm(props: any): JSX.Element {
   const [ingredientResults, setIngResults] = useState<Ingredient[] | []>([]);
@@ -175,7 +175,7 @@ function IngredientForm(props: any): JSX.Element {
   );
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: AppState) => {
   return {state}
 }
 
