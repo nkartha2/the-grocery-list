@@ -2,19 +2,12 @@ import React, { useState } from 'react';
 import IngredientForm from "./IngredientForm";
 import IngredientToBeAddedList from "./IngredientToBeAddedList";
 import axiosClient from "./axiosClient";
-import { RecipeState} from "./store/recipe_types";
+import { RecipeState } from "./store/recipe_types";
+import { AppState } from './store/index';
 import { connect } from 'react-redux';
 
 
-// {
-  // recipe_name: "tomato soup",
-  // recipe_link: "https://minimalistbaker.com/creamy-roasted-red-pepper-tomato-soup/",
-  // recipe_notes: "",
-  // ingredients: [
-    // {ingredient_id: 2, quantity: 1, uom_id: 4},
-// }
-
-function RecipeForm(props: any): JSX.Element {
+function RecipeForm(props: RecipeState): JSX.Element {
   const [recipeName, setRecipeName] = useState("");
   const [recipeLink, setRecipeLink] = useState("");
 
@@ -70,7 +63,7 @@ function RecipeForm(props: any): JSX.Element {
   );
 }
 
-function mapStateToProps(state: any) {
+function mapStateToProps(state: AppState) {
   return {
     ingredients: state.recipe.ingredients
   }
