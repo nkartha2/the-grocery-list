@@ -18,7 +18,7 @@ function Recipes(): JSX.Element {
     } catch(e) {
       console.error(e);
     }
-  })
+  }, [])
 
   return (
     <div>

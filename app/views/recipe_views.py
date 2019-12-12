@@ -1,7 +1,7 @@
 from flask import render_template, Blueprint, request, jsonify
 from app.models import UnitOfMeasure, Recipe, Ingredient, Ingredients
 from app import db
-from app.schemas import ingredients_schema
+from app.schemas import ingredients_schema, recipes_schema
 
 recipe_view = Blueprint('recipe_view', __name__, url_prefix="/api/v1/")
 
@@ -28,6 +28,12 @@ def get_uom():
 def recipe():
   return render_template("recipe.html")
 
+
+@recipe_view.route("/recipes", methods=["GET"])
+def get_recipes():
+  recipes_results = Recipe.query.limit(5)
+  recipes = recipes_schema.dump(recipes_results)
+  return jsonify(recipes)
 
 @recipe_view.route("/add/recipe", methods=["POST"])
 def add_recipe():
