@@ -31,7 +31,7 @@ def recipe():
 
 @recipe_view.route("/recipes", methods=["GET"])
 def get_recipes():
-  recipes_results = Recipe.query.limit(5)
+  recipes_results = Recipe.query.limit(5).all()
   recipes = recipes_schema.dump(recipes_results)
   return jsonify(recipes)
 

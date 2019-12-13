@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axiosClient from "./axiosClient";
+
 function Recipes(): JSX.Element {
   const [recipeResults, setRecipes] = useState([]);
 
@@ -23,6 +24,9 @@ function Recipes(): JSX.Element {
   return (
     <div>
       <h2>Recipes</h2>
+      {recipeResults.map((recipe: {name: string}, index: number) => {
+        return(<p>{recipe.name}</p>);
+      })}
     </div>
   );
 }
