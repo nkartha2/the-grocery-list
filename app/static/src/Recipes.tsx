@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axiosClient from "./axiosClient";
 
+const colorPalette = {
+  sweetMeatGreen: "#EEFABC",
+  appleSauceGreen: "#DDE435",
+  coreGreen: "#C2C72D",
+  fireOrange: "#FF6F36",
+  spottySkinRed: "#F14A2A"
+}
+
 function Recipes(): JSX.Element {
   const [recipeResults, setRecipes] = useState([]);
 
@@ -22,7 +30,7 @@ function Recipes(): JSX.Element {
   }, [])
 
   return (
-    <div>
+    <div style={{backgroundColor: "#EEFABC"}}>
       <h2>Recipes</h2>
       {recipeResults.map((recipe: {name: string}, index: number) => {
         return(<p>{recipe.name}</p>);
