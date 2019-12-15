@@ -33,7 +33,7 @@ function Recipes(): JSX.Element {
     <div style={{backgroundColor: "#EEFABC"}}>
       <h2>Recipes</h2>
       {recipeResults.map((recipe: {name: string}, index: number) => {
-        return(<p>{recipe.name}</p>);
+        return(<p key={index}>{recipe.name}</p>);
       })}
     </div>
   );
