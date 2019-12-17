@@ -30,8 +30,8 @@ function Recipes(): JSX.Element {
   }, [])
 
   return (
-    <div style={{backgroundColor: "#EEFABC"}}>
-      <h2>Recipes</h2>
+    <div>
+      <h2 style={{color: colorPalette.coreGreen, fontFamily: 'Montserrat'}}>Recipes</h2>
       {recipeResults.map((recipe: {name: string}, index: number) => {
         return(<p key={index}>{recipe.name}</p>);
       })}
