@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axiosClient from "./axiosClient";
+import './styles/_recipes.scss';
 
 const colorPalette = {
   sweetMeatGreen: "#EEFABC",
@@ -31,7 +32,7 @@ function Recipes(): JSX.Element {
 
   return (
     <div>
-      <h2 style={{color: colorPalette.coreGreen, fontFamily: 'Montserrat'}}>Recipes</h2>
+      <h2 className="recipe_title">Recipes</h2>
       {recipeResults.map((recipe: {name: string}, index: number) => {
         return(<p key={index}>{recipe.name}</p>);
       })}
