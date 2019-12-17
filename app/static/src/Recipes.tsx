@@ -2,13 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axiosClient from "./axiosClient";
 import './styles/_recipes.scss';
 
-const colorPalette = {
-  sweetMeatGreen: "#EEFABC",
-  appleSauceGreen: "#DDE435",
-  coreGreen: "#C2C72D",
-  fireOrange: "#FF6F36",
-  spottySkinRed: "#F14A2A"
-}
 
 function Recipes(): JSX.Element {
   const [recipeResults, setRecipes] = useState([]);
@@ -33,9 +26,11 @@ function Recipes(): JSX.Element {
   return (
     <div>
       <h2 className="recipe_title">Recipes</h2>
-      {recipeResults.map((recipe: {name: string}, index: number) => {
-        return(<p key={index}>{recipe.name}</p>);
-      })}
+      <ol>
+        {recipeResults.map((recipe: {name: string}, index: number) => {
+          return(<li key={index}>{recipe.name}</li>);
+        })}
+      </ol>
     </div>
   );
 }
