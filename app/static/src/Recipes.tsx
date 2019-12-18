@@ -25,8 +25,10 @@ function Recipes(): JSX.Element {
 
   return (
     <div>
-      <div className="main-nav">Neel's Meals</div>
-      <i className="fas fa-carrot"></i>
+      <div className="main-nav">
+        <h1>Neel's Meals</h1>
+        <i className="fas fa-carrot"></i>
+      </div>
       <div className="main-section">
         <h2 className="recipe_title">Recipes</h2>
         <ol>

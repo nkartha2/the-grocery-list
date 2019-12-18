@@ -7,9 +7,11 @@ $sweetMeatGreen: #EEFABC;
 $lightWhite: #efefef;
 
 .main-section {
-  background-image: url("../chilies.jpeg");
-  width: 100%;
+  // background-image: url("../chilies_copy.jpeg");
+  // background-position: center;
+  width: 75%;
   height: 100%;
+  display: inline-block;
 }
 
 .recipe_title {
@@ -18,9 +20,29 @@ $lightWhite: #efefef;
 }
 
 .main-nav {
-  color: $fireOrange;
-  font-size: 35px;
-  padding: 10px;
-  box-shadow: 0px 5px 5px 0px $lightWhite;
-  font-family: 'Pacifico', cursive;
+  h1 {
+    color: #fff;
+    font-size: 35px;
+    padding: 10px;
+    font-family: 'Pacifico', cursive;
+  }
+  position: relative;
+  min-height: 550px;
+  max-width: 20%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.main-nav:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  background-image: url("../chilies_copy.jpeg");
+  background-position: center center;
+  background-size: cover;
+  height: 100%;
+  display: inline-block;
 }
