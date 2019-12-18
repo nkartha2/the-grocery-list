@@ -25,12 +25,16 @@ function Recipes(): JSX.Element {
 
   return (
     <div>
-      <h2 className="recipe_title">Recipes</h2>
-      <ol>
-        {recipeResults.map((recipe: {name: string}, index: number) => {
-          return(<li key={index}>{recipe.name}</li>);
-        })}
-      </ol>
+      <div className="main-nav">Neel's Meals</div>
+      <i className="fas fa-carrot"></i>
+      <div className="main-section">
+        <h2 className="recipe_title">Recipes</h2>
+        <ol>
+          {recipeResults.map((recipe: {name: string}, index: number) => {
+            return(<li key={index}>{recipe.name}</li>);
+          })}
+        </ol>
+      </div>
     </div>
   );
 }
