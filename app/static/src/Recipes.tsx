@@ -24,9 +24,10 @@ function Recipes(): JSX.Element {
   }, [])
 
   return (
-    <div>
+    <div className="container">
       <div className="main-nav">
         <h1>Neel's Meals</h1>
+        <div className="pic-border"></div>
         <i className="fas fa-carrot"></i>
       </div>
       <div className="main-section">
