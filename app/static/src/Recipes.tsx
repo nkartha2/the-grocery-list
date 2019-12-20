@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosClient from "./axiosClient";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCarrot } from '@fortawesome/free-solid-svg-icons';
 import './styles/_recipes.scss';
 
 
@@ -27,7 +29,7 @@ function Recipes(): JSX.Element {
     <div className="container">
       <div className="main-nav">
         <h1>Neel's Meals</h1>
-        <i className="fas fa-carrot"></i>
+        <FontAwesomeIcon icon={faCarrot} />
         <a>Recipes </a>
         <a>Ingredients </a>
         <a>Groceries </a>

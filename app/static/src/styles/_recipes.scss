@@ -5,11 +5,14 @@ $fireOrange: #FF6F36;
 $appleSauceGreen: #DDE435;
 $sweetMeatGreen: #EEFABC;
 $lightWhite: #efefef;
+$shadow: #3c3c3c;
 
 .container {
   display: flex;
   align-items: flex-start;
-  min-height: 550px;
+  min-height: 100vh;
+  color: #fff;
+  background-color: $fireOrange;
 }
 
 .main-section {
@@ -19,13 +22,12 @@ $lightWhite: #efefef;
 }
 
 .recipe_title {
-  color: $coreGreen;
+  // color: $coreGreen;
   font-family: 'Montserrat';
 }
 
 .main-nav {
-  color: $fireOrange;
-  box-shadow: 0px 0px 5px 5px #ccc;
+  box-shadow: 0px 0px 5px 5px $shadow;
   flex: 1;
   align-self: stretch;
   a {
