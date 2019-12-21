@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axiosClient from "./axiosClient";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCarrot } from '@fortawesome/free-solid-svg-icons';
 import './styles/_recipes.scss';
 
 
@@ -26,22 +24,13 @@ function Recipes(): JSX.Element {
   }, [])
 
   return (
-    <div className="container">
-      <div className="main-nav">
-        <h1>Neel's Meals</h1>
-        <FontAwesomeIcon icon={faCarrot} />
-        <a>Recipes </a>
-        <a>Ingredients </a>
-        <a>Groceries </a>
-      </div>
-      <div className="main-section">
-        <h2 className="recipe_title">Recipes</h2>
-        <ol>
-          {recipeResults.map((recipe: {name: string}, index: number) => {
-            return(<li key={index}>{recipe.name}</li>);
-          })}
-        </ol>
-      </div>
+    <div className="main-section">
+      <h2 className="recipe_title">Recipes</h2>
+      <ol>
+        {recipeResults.map((recipe: {name: string}, index: number) => {
+          return(<li key={index}>{recipe.name}</li>);
+        })}
+      </ol>
     </div>
   );
 }

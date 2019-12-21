@@ -1,0 +1,28 @@
+@import './_consts.scss';
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  min-height: 100vh;
+  color: #fff;
+  background-color: $fireOrange;
+  font-family: 'Montserrat';
+}
+
+.main-nav {
+  box-shadow: 0px 0px 5px 5px $shadow;
+  flex: 1;
+  align-self: stretch;
+  a {
+    display: block;
+  }
+  h1 {
+    font-size: 35px;
+    padding: 10px;
+    font-family: 'Pacifico', cursive;
+  }
+  .menu {
+    width: 150px;
+    margin: 0 auto;
+  }
+}

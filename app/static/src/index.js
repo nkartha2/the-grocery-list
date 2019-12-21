@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { createStore } from 'redux';
+import MainNav from './MainNav';
+import './styles/_base.scss';
 
 import rootReducer from './store/index';
 
@@ -18,7 +20,8 @@ const store = createStore(rootReducer);
 const routing = (
   <Provider store={store}>
     <Router>
-      <div>
+      <div className="container">
+        <MainNav/>
         <Route path="/" component={App} />
         <Route path="/add/recipe" component={RecipeForm} />
         <Route path="/recipes" component={Recipes} />
