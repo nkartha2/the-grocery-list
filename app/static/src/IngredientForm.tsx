@@ -105,7 +105,7 @@ function IngredientForm(props: any): JSX.Element {
 
   return (
     <div>
-      <h3>Add Ingredient</h3>
+      <h4>Add Ingredient</h4>
       <form
         autoComplete="off"
       >

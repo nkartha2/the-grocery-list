@@ -6,7 +6,7 @@ function MainNav() {
   return (
     <div className="main-nav">
       <h1>Neel's Meals</h1>
-      <FontAwesomeIcon icon={faCarrot} />
+      <FontAwesomeIcon style={{width: "100%", margin: "5px auto"}} icon={faCarrot} />
       <div className="menu">
         <a>Recipes </a>
         <a>Ingredients </a>

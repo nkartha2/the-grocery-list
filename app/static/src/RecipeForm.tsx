@@ -5,6 +5,7 @@ import axiosClient from "./axiosClient";
 import { RecipeState } from "./store/recipe_types";
 import { AppState } from './store/index';
 import { connect } from 'react-redux';
+import "./styles/_recipe_form.scss";
 
 
 function RecipeForm(props: RecipeState): JSX.Element {
@@ -37,28 +38,31 @@ function RecipeForm(props: RecipeState): JSX.Element {
   }
 
   return (
-    <div style={{width: "500px", margin: "30px auto"}}>
-      <div style={{display: "block", margin: "10px 0px"}}>
-        <label>Recipe Link </label>
-        <input
-          type="url"
-          name="recipe_link"
-          onChange={(e) => handleLinkChange(e)}
-        />
+    <div className="admin">
+      <div className="admin-form">
+        <h3>Add Recipe</h3>
+        <div>
+          <label>Recipe Link </label>
+          <input
+            type="url"
+            name="recipe_link"
+            onChange={(e) => handleLinkChange(e)}
+          />
+        </div>
+        <div>
+          <label>Recipe Name </label>
+          <input
+            type="text"
+            name="recipe_name"
+            onChange={(e) => handleNameChange(e)}
+          />
+        </div>
+        {props.ingredients.length > 0 && <IngredientToBeAddedList/>}
+        <IngredientForm />
+        <label>Notes</label>
+        <textarea name="notes" />
+        <button onClick={() => submitRecipe()}>Add Recipe</button>
       </div>
-      <div style={{display: "block", margin: "10px 0px"}}>
-        <label>Recipe Name </label>
-        <input
-          type="text"
-          name="recipe_name"
-          onChange={(e) => handleNameChange(e)}
-        />
-      </div>
-      <IngredientToBeAddedList/>
-      <IngredientForm />
-      <label>Notes</label>
-      <textarea name="notes" />
-      <button onClick={() => submitRecipe()}>Add Recipe</button>
     </div>
   );
 }

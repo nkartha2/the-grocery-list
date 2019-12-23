@@ -23,7 +23,7 @@ function IngredientsToBeAddedList(props: any): JSX.Element {
 
   return (
     <div>
-      <h3>Recipe Ingredients:</h3>
+      <h4>Recipe Ingredients:</h4>
       <ul>
         {items}
       </ul>

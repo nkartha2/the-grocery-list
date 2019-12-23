@@ -1,0 +1,22 @@
+@import './_consts';
+
+.admin {
+  flex: 2;
+  h3 {
+    font-weight: 700;
+    color: $shadow;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.admin-form {
+  color: $ammo;
+  width: 550px;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 25px;
+  label {
+    font-weight: 600;
+  }
+}
