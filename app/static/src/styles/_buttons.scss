@@ -1,0 +1,11 @@
+@import './_consts.scss';
+
+.button {
+  display: block;
+  padding: 20px;
+  font-family: 'Montserrat';
+  text-transform: uppercase;
+  color: $fireOrange;
+  background-color: #fff;
+  border: none;
+}
