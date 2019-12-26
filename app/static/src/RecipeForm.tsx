@@ -6,6 +6,7 @@ import { RecipeState } from "./store/recipe_types";
 import { AppState } from './store/index';
 import { connect } from 'react-redux';
 import "./styles/_recipe_form.scss";
+import Button from './ui_components/Button';
 
 
 function RecipeForm(props: RecipeState): JSX.Element {
@@ -61,7 +62,10 @@ function RecipeForm(props: RecipeState): JSX.Element {
         <IngredientForm />
         <label>Notes</label>
         <textarea name="notes" />
-        <button onClick={() => submitRecipe()}>Add Recipe</button>
+        <Button
+          onClick={submitRecipe}
+          ctaString={'Add Recipe'}
+        />
       </div>
     </div>
   );

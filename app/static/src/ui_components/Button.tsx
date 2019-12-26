@@ -1,8 +1,8 @@
 import React from 'react';
-import './styles/_buttons.scss';
+import "../styles/_buttons.scss";
 
 type ButtonProps = {
-  color: string,
+  color?: string,
   onClick: Function,
   ctaString: string
 }
@@ -14,5 +14,7 @@ function Button(props: ButtonProps) {
     >
       {props.ctaString}
     </button>
+  );
 }
 
+export default Button;
