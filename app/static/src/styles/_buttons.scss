@@ -1,11 +1,12 @@
 @import './_consts.scss';
 
-.button {
+.form_button {
+  padding: 15px;
   display: block;
-  padding: 20px;
-  font-family: 'Montserrat';
-  text-transform: uppercase;
-  color: $fireOrange;
-  background-color: #fff;
+  color: #fff;
+  font-weight: 600;
+  background-color: $coreGreen;
+  margin: 10px 0px 0px;
   border: none;
+  text-transform: uppercase;
 }

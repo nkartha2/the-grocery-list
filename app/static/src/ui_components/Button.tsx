@@ -10,6 +10,7 @@ type ButtonProps = {
 function Button(props: ButtonProps) {
   return (
     <button
+      className="form_button"
       onClick={() => props.onClick()}
     >
       {props.ctaString}
