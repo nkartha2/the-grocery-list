@@ -5,8 +5,10 @@ import axiosClient from "./axiosClient";
 import { RecipeState } from "./store/recipe_types";
 import { AppState } from './store/index';
 import { connect } from 'react-redux';
-import "./styles/_recipe_form.scss";
 import Button from './ui_components/Button';
+
+import "./styles/_recipe_form.scss";
+import "./styles/_forms.scss";
 
 
 function RecipeForm(props: RecipeState): JSX.Element {
@@ -40,11 +42,12 @@ function RecipeForm(props: RecipeState): JSX.Element {
 
   return (
     <div className="admin">
-      <div className="admin-form">
+      <div className="admin_form">
         <h3>Add Recipe</h3>
         <div>
           <label>Recipe Link </label>
           <input
+            className="form_input"
             type="url"
             name="recipe_link"
             onChange={(e) => handleLinkChange(e)}
