@@ -104,7 +104,7 @@ function IngredientForm(props: any): JSX.Element {
   }
 
   return (
-    <div>
+    <div className="form">
       <h4>Add Ingredient</h4>
       <form
         autoComplete="off"
@@ -114,6 +114,7 @@ function IngredientForm(props: any): JSX.Element {
         >
           <label>Quantity</label>
           <input
+            className="form_input"
             value={quantity ? quantity : ""}
             onChange={(e) => setQuantity(e.currentTarget.value)}
             type="number"
@@ -131,6 +132,7 @@ function IngredientForm(props: any): JSX.Element {
             }}
           >
             <input
+              className="form_input"
               value={ uom ? uom.name : uomName}
               onChange={(e) => handleUnitofMeasureChange(e)}
               onFocus={(e) => setShowUOMDropdown(true)}

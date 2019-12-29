@@ -41,7 +41,7 @@ function RecipeForm(props: RecipeState): JSX.Element {
   }
 
   return (
-    <div className="admin">
+    <div className="form">
       <div className="admin_form">
         <h3>Add Recipe</h3>
         <div>
@@ -58,6 +58,7 @@ function RecipeForm(props: RecipeState): JSX.Element {
           <input
             type="text"
             name="recipe_name"
+            className="form_input"
             onChange={(e) => handleNameChange(e)}
           />
         </div>

@@ -1,7 +1,8 @@
 @import './_consts.scss';
 
-
-.form_input {
-  border: none;
-  border-bottom: 1px solid $shadow;
+.form {
+  input {
+    border: none;
+    border-bottom: 1px solid $shadow;
+  }
 }
