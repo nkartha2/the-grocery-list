@@ -1,8 +1,12 @@
 @import './_consts.scss';
 
 .form {
+  flex: 2;
   input {
     border: none;
     border-bottom: 1px solid $shadow;
+  }
+  input:focus {
+    outline: none;
   }
 }
