@@ -104,7 +104,7 @@ function IngredientForm(props: any): JSX.Element {
   }
 
   return (
-    <div className="form">
+    <div className="form sub">
       <h4>Add Ingredient</h4>
       <form
         autoComplete="off"
@@ -172,7 +172,12 @@ function IngredientForm(props: any): JSX.Element {
             }
           </div>
         </div>
-        <button onClick={(e) => addIngredient(e)}>Add Ingredient</button>
+        <button
+          className="form_button"
+          onClick={(e) => addIngredient(e)}
+        >
+          Add Ingredient
+        </button>
       </form>
     </div>
   );
