@@ -62,12 +62,12 @@ function RecipeForm(props: RecipeState): JSX.Element {
             onChange={(e) => handleNameChange(e)}
           />
         </div>
-        {props.ingredients.length > 0 && <IngredientToBeAddedList/>}
-        <IngredientForm />
         <div className="form-input">
           <label>Notes: </label>
           <textarea name="notes" />
         </div>
+        {props.ingredients.length > 0 && <IngredientToBeAddedList/>}
+        <IngredientForm />
         <Button
           onClick={submitRecipe}
           ctaString={'Add Recipe'}
