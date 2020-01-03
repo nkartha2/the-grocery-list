@@ -12,6 +12,7 @@ import './index.css';
 import App from './App';
 import RecipeForm from "./RecipeForm";
 import Recipes from "./Recipes";
+import AdminAddIngredient from './AdminAddIngredient';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(rootReducer);
@@ -23,8 +24,9 @@ const routing = (
       <div className="container">
         <MainNav/>
         <Route path="/" component={App} />
-        <Route path="/add/recipe" component={RecipeForm} />
+        <Route path="/admin/recipe" component={RecipeForm} />
         <Route path="/recipes" component={Recipes} />
+        <Route path="/admin/ingredient" component={AdminAddIngredient} />
       </div>
     </Router>
   </Provider>
