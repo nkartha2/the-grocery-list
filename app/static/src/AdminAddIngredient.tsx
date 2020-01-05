@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axiosClient from './axiosClient';
 
 function AdminAddIngredient(): JSX.Element {
-  async function addIng(ingName: string, ingType: string) {
+  const [ingName, setIngName] = useState<string>('');
+  const [ingType, setIngType] = useState<string>('');
+
+  async function addIng() {
     try {
       axiosClient({
         method: "post",
@@ -20,12 +23,22 @@ function AdminAddIngredient(): JSX.Element {
   return (
     <div className="form">
       <label>Ingredient Name</label>
-      <input id="ingredient-name" type="text" name="ingredient_name" />
+      <input
+        id="ingredient-name"
+        type="text"
+        name="ingredient_name"
+        onChange={(e) => setIngName(e.currentTarget.value)}
+      />
       <label>Ingredient Type</label>
-      <input id="ingredient-type" type="text" name="ingredient_type" />
+      <input
+        id="ingredient-type"
+        type="text"
+        name="ingredient_type"
+        onChange={(e) => setIngType(e.currentTarget.value)}
+      />
       <button
         className="form_button"
-        onClick={(e) => console.log(e)}
+        onClick={(e) => addIng()}
       >
         Add Ingredient
       </button>
