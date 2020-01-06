@@ -9,8 +9,8 @@ function AdminAddIngredient(): JSX.Element {
     try {
       axiosClient({
         method: "post",
-        url: "/api/v1/admin/ingredient",
-        params: {
+        url: "/api/v1/admin/add_ingredient",
+        data: {
           "ingredient_name": ingName,
           "ingredient_type": ingType
         }

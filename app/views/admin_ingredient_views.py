@@ -1,22 +1,18 @@
-from flask import render_template, Blueprint, request
+from flask import render_template, Blueprint, request, jsonify
 from app.models import Ingredient
 
 from app import app, db
 
-ingredient_admin_view = Blueprint('ingredient_admin_view', __name__, url_prefix="/admin")
+ingredient_admin_view = Blueprint('ingredient_admin_view', __name__, url_prefix="/api/v1/admin")
 
 # admin ingredients
-@ingredient_admin_view.route("/ingredients/", methods=["GET"])
-def admin_ingredients():
-  return render_template("ingredient_admin.html")
-
-@ingredient_admin_view.route("/ingredients/", methods=["POST"])
+@ingredient_admin_view.route("/add_ingredient", methods=["POST"])
 def admin_add_ingredient():
-    ingredient = Ingredient(
-      name=request.form['ingredient_name'],
-      ingredient_type=request.form['ingredient_type']
-    )
+  ingredient = Ingredient(
+    name=request.json['ingredient_name'],
+    ingredient_type=request.json['ingredient_type']
+  )
 
-    db.session.add(ingredient)
-    db.session.commit()
-    return render_template("ingredient_admin.html")
+  db.session.add(ingredient)
+  db.session.commit()
+  return jsonify(ingredient)
