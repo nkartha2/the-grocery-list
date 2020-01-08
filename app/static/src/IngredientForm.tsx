@@ -129,6 +129,7 @@ function IngredientForm(props: any): JSX.Element {
             className="items-list"
             style={{
               position: "relative",
+              display: "inline-block"
             }}
           >
             <input
@@ -154,10 +155,12 @@ function IngredientForm(props: any): JSX.Element {
           <div
             className="items-list"
             style={{
-              position: "relative"
+              position: "relative",
+              display: "inline-block"
             }}
           >
             <input
+              className="form_input"
               value={ ing ? ing.name : ingName}
               onChange={(e) => handleNameChange(e)}
               onFocus={(e) => setShowIngDropdown(true)}

@@ -7,8 +7,8 @@ import { AppState } from './store/index';
 import { connect } from 'react-redux';
 import Button from './ui_components/Button';
 
-import "./styles/_recipe_form.scss";
 import "./styles/_forms.scss";
+import "./styles/_recipe_form.scss";
 
 
 function RecipeForm(props: RecipeState): JSX.Element {
