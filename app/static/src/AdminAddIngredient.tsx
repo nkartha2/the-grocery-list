@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axiosClient from './axiosClient';
 
-import "./styles/_forms.scss";
+import FormWrapper from './ui_components/FormWrapper';
 
 function AdminAddIngredient(): JSX.Element {
   const [ingName, setIngName] = useState<string>('');
@@ -23,7 +23,7 @@ function AdminAddIngredient(): JSX.Element {
   }
 
   return (
-    <div className="form">
+    <FormWrapper>
       <div className="admin_form">
         <label>Ingredient Name</label>
         <input
@@ -48,7 +48,7 @@ function AdminAddIngredient(): JSX.Element {
           Add Ingredient
         </button>
       </div>
-    </div>
+    </FormWrapper>
   )
 }
 

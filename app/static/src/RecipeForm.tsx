@@ -5,9 +5,10 @@ import axiosClient from "./axiosClient";
 import { RecipeState } from "./store/recipe_types";
 import { AppState } from './store/index';
 import { connect } from 'react-redux';
-import Button from './ui_components/Button';
 
-import "./styles/_forms.scss";
+import Button from './ui_components/Button';
+import FormWrapper from './ui_components/FormWrapper';
+
 import "./styles/_recipe_form.scss";
 
 
@@ -41,7 +42,7 @@ function RecipeForm(props: RecipeState): JSX.Element {
   }
 
   return (
-    <div className="form">
+    <FormWrapper>
       <div className="admin_form">
         <h3>Add Recipe</h3>
         <div>
@@ -73,7 +74,7 @@ function RecipeForm(props: RecipeState): JSX.Element {
           ctaString={'Add Recipe'}
         />
       </div>
-    </div>
+    </FormWrapper>
   );
 }
 
