@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axiosClient from './axiosClient';
+import axiosClient from '../axiosClient';
 
-import FormWrapper from './ui_components/FormWrapper';
+import FormWrapper from '../ui_components/FormWrapper';
 
 function AdminAddIngredient(): JSX.Element {
   const [ingName, setIngName] = useState<string>('');

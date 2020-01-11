@@ -12,7 +12,7 @@ import './index.css';
 import App from './App';
 import RecipeForm from "./RecipeForm";
 import Recipes from "./Recipes";
-import AdminAddIngredient from './AdminAddIngredient';
+import AdminAddIngredient from './admin/AdminAddIngredient';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(rootReducer);
