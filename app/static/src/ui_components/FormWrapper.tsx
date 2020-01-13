@@ -4,7 +4,9 @@ import "../styles/_forms.scss";
 function FormWrapper(props: {children: React.ReactElement}): JSX.Element {
   return (
     <div className="form">
-      {props.children}
+      <div className="form_body">
+        {props.children}
+      </div>
     </div>
   );
 }

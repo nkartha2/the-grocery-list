@@ -43,7 +43,7 @@ function RecipeForm(props: RecipeState): JSX.Element {
 
   return (
     <FormWrapper>
-      <div className="admin_form">
+      <div>
         <h3>Add Recipe</h3>
         <div>
           <label>Recipe Link </label>

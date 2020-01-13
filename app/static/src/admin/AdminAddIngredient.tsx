@@ -24,7 +24,7 @@ function AdminAddIngredient(): JSX.Element {
 
   return (
     <FormWrapper>
-      <div className="admin_form">
+      <div>
         <label>Ingredient Name</label>
         <input
           className="form_input"
