@@ -104,87 +104,85 @@ function IngredientForm(props: any): JSX.Element {
   }
 
   return (
-    <FormWrapper>
-      <div className="sub">
-        <h4>Add Ingredient</h4>
-        <form
-          autoComplete="off"
+    <div className="sub">
+      <h4>Add Ingredient</h4>
+      <form
+        autoComplete="off"
+      >
+        <div
+          style={{display: "block", margin: "10px 0px"}}
         >
+          <label>Quantity</label>
+          <input
+            className="form_input"
+            value={quantity ? quantity : ""}
+            onChange={(e) => setQuantity(e.currentTarget.value)}
+            type="number"
+            name="ingredient_quantity"
+          />
+        </div>
+        <div
+          style={{display: "block", margin: "10px 0px"}}
+        >
+          <label>Unit of Measure</label>
           <div
-            style={{display: "block", margin: "10px 0px"}}
+            className="items-list"
+            style={{
+              position: "relative",
+              display: "inline-block"
+            }}
           >
-            <label>Quantity</label>
             <input
               className="form_input"
-              value={quantity ? quantity : ""}
-              onChange={(e) => setQuantity(e.currentTarget.value)}
-              type="number"
-              name="ingredient_quantity"
+              value={ uom ? uom.name : uomName}
+              onChange={(e) => handleUnitofMeasureChange(e)}
+              onFocus={(e) => setShowUOMDropdown(true)}
+              type="text"
+              name="uom"
             />
-          </div>
-          <div
-            style={{display: "block", margin: "10px 0px"}}
-          >
-            <label>Unit of Measure</label>
-            <div
-              className="items-list"
-              style={{
-                position: "relative",
-                display: "inline-block"
-              }}
-            >
-              <input
-                className="form_input"
-                value={ uom ? uom.name : uomName}
-                onChange={(e) => handleUnitofMeasureChange(e)}
-                onFocus={(e) => setShowUOMDropdown(true)}
-                type="text"
-                name="uom"
+            {!uom && showUOMDropdown && uomResults && uomResults.length > 0 &&
+              <DropDownList
+                setItem={setUOM}
+                results={uomResults}
               />
-              {!uom && showUOMDropdown && uomResults && uomResults.length > 0 &&
-                <DropDownList
-                  setItem={setUOM}
-                  results={uomResults}
-                />
-              }
-            </div>
+            }
           </div>
+        </div>
+        <div
+          style={{display: "block", margin: "10px 0px"}}
+        >
+          <label>Name</label>
           <div
-            style={{display: "block", margin: "10px 0px"}}
+            className="items-list"
+            style={{
+              position: "relative",
+              display: "inline-block"
+            }}
           >
-            <label>Name</label>
-            <div
-              className="items-list"
-              style={{
-                position: "relative",
-                display: "inline-block"
-              }}
-            >
-              <input
-                className="form_input"
-                value={ ing ? ing.name : ingName}
-                onChange={(e) => handleNameChange(e)}
-                onFocus={(e) => setShowIngDropdown(true)}
-                type="text"
-                name="ingredient_name"
+            <input
+              className="form_input"
+              value={ ing ? ing.name : ingName}
+              onChange={(e) => handleNameChange(e)}
+              onFocus={(e) => setShowIngDropdown(true)}
+              type="text"
+              name="ingredient_name"
+            />
+            {!ing && showIngDropdown && ingredientResults && ingredientResults.length > 0 &&
+              <DropDownList
+                setItem={setIng}
+                results={ingredientResults}
               />
-              {!ing && showIngDropdown && ingredientResults && ingredientResults.length > 0 &&
-                <DropDownList
-                  setItem={setIng}
-                  results={ingredientResults}
-                />
-              }
-            </div>
+            }
           </div>
-          <button
-            className="form_button"
-            onClick={(e) => addIngredient(e)}
-          >
-            Add Ingredient
-          </button>
-        </form>
-      </div>
-    </FormWrapper>
+        </div>
+        <button
+          className="form_button"
+          onClick={(e) => addIngredient(e)}
+        >
+          Add Ingredient
+        </button>
+      </form>
+    </div>
   );
 }
 
