@@ -2,16 +2,13 @@ from flask import render_template, Blueprint, request
 from app.models import UnitOfMeasure
 from app import app, db
 
-uom_admin_view = Blueprint('uom_admin_view', __name__, url_prefix="/admin")
+uom_admin_view = Blueprint('uom_admin_view', __name__, url_prefix="/api/v1/")
 
-@uom_admin_view.route("/uom/", methods=["GET"])
-def admin_uom():
-  return render_template("uom.html")
 
-@uom_admin_view.route("/uom/", methods=["POST"])
+@uom_admin_view.route("/admin/add_uom", methods=["POST"])
 def admin_add_uom():
     uom = UnitOfMeasure(
-      name=request.form['uom_name'],
+      name=request.json['uom_name'],
     )
     db.session.add(uom)
     db.session.commit()
