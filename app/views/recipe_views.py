@@ -22,13 +22,6 @@ def get_uom():
   return jsonify(all_uoms)
 
 
-# the default page
-@recipe_view.route("/", methods=["GET", "POST"])
-# what gets executed when arriving on the main page
-def recipe():
-  return render_template("recipe.html")
-
-
 @recipe_view.route("/recipes", methods=["GET"])
 def get_recipes():
   recipes_results = Recipe.query.limit(5).all()
