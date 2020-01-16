@@ -7,7 +7,10 @@ type RemoveButtonProps = {
 
 function RemoveButton(props: RemoveButtonProps){
   return (
-    <div style={{position: "relative"}} >
+    <div style={{
+      position: "relative",
+      display: "inline-block"
+    }} >
       <div style={{
         width: "20px",
         height: "20px",

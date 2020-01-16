@@ -6,6 +6,11 @@ import { RecipeState, Ingredient, AddIngredient } from './store/recipe_types';
 import RemoveButton from './ui_components/RemoveButton';
 
 function IngredientsToBeAddedList(props: any): JSX.Element {
+  const style= {
+    display: "inline-block",
+    padding: "5px"
+  };
+
   const items = props.ingredients.map((ingredient: AddIngredient, index: number) => {
     return (
       <li key={index}>
@@ -13,9 +18,11 @@ function IngredientsToBeAddedList(props: any): JSX.Element {
           onClick={props.onRemoveClick}
           removalIndex={index}
         />
-        {ingredient.quantity}
-        {ingredient.uom.name}
-        {ingredient.ing.name}
+        <div style={{ display: "inline-block", marginLeft: "5px"}}>
+          <p style={style}>{ingredient.quantity}</p>
+          {ingredient.uom.name && <p style={style}>{ingredient.uom.name}</p>}
+          <p style={style}>{ingredient.ing.name}</p>
+        </div>
       </li>
     );
   });
