@@ -27,8 +27,16 @@ function Recipes(): JSX.Element {
     <div className="main-section">
       <h2 className="recipe_title">Recipes</h2>
       <ol>
-        {recipeResults.map((recipe: {name: string}, index: number) => {
-          return(<li key={index}>{recipe.name}</li>);
+        {recipeResults.map((recipe: {id: number, name: string}, index: number) => {
+          return(
+            <li key={index}>
+              <a
+                href={`recipe/${recipe.id}/${recipe.name}`}
+              >
+                {recipe.name}
+              </a>
+            </li>
+          );
         })}
       </ol>
     </div>
