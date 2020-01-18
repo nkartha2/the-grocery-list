@@ -28,6 +28,15 @@ def get_recipes():
   recipes = recipes_schema.dump(recipes_results)
   return jsonify(recipes)
 
+
+@recipe_view.route("/recipe/{id}", methods=["POST"])
+def get_recipe():
+  print('hiiii')
+  recipes_results = Recipe.query.limit(5).all()
+  recipes = recipes_schema.dump(recipes_results)
+  return jsonify(recipes)
+
+
 @recipe_view.route("/add/recipe", methods=["POST"])
 def add_recipe():
   recipe = Recipe(

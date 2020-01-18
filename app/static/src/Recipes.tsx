@@ -1,10 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import axiosClient from "./axiosClient";
 import './styles/_recipes.scss';
+import { RecipeState } from './store/recipe_types';
 
 
 function Recipes(): JSX.Element {
   const [recipeResults, setRecipes] = useState([]);
+  const [activeRecipe, setActiveRecipe] = useState<null | RecipeState>();
+
+  async function fetchRecipe(recipeId: number) {
+    try {
+      axiosClient({
+        method: "post",
+        url: `recipe/`,
+        params: recipeId
+      }).then(
+        response => {
+          if (response.data && response.data.length > 0) {
+            setActiveRecipe(response.data)
+          }
+        }
+      )
+    } catch(e) {
+      console.error(e);
+    }
+  }
 
   useEffect(() => {
     try {
@@ -31,10 +51,12 @@ function Recipes(): JSX.Element {
           return(
             <li key={index}>
               <a
-                href={`recipe/${recipe.id}/${recipe.name}`}
+                style={{padding: "10px 0px"}}
+                onClick={() => fetchRecipe(recipe.id)}
               >
                 {recipe.name}
               </a>
+              {activeRecipe && activeRecipe.name}
             </li>
           );
         })}

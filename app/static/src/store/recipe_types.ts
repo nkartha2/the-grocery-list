@@ -1,4 +1,7 @@
 export interface RecipeState {
+  name?: string,
+  link?: string,
+  state?: string,
   ingredients: AddIngredient[]
 }
 
