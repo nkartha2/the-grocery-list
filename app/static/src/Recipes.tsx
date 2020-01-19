@@ -8,22 +8,8 @@ function Recipes(): JSX.Element {
   const [recipeResults, setRecipes] = useState([]);
   const [activeRecipe, setActiveRecipe] = useState<null | RecipeState>();
 
-  async function fetchRecipe(recipeId: number) {
-    try {
-      axiosClient({
-        method: "post",
-        url: `recipe/`,
-        params: recipeId
-      }).then(
-        response => {
-          if (response.data && response.data.length > 0) {
-            setActiveRecipe(response.data)
-          }
-        }
-      )
-    } catch(e) {
-      console.error(e);
-    }
+  function showIngredients(recipeId: number) {
+    console.log('wip ')
   }
 
   useEffect(() => {
