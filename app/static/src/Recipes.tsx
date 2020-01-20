@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axiosClient from "./axiosClient";
 import './styles/_recipes.scss';
-import { RecipeState } from './store/recipe_types';
 
 
 function Recipes(): JSX.Element {
   const [recipeResults, setRecipes] = useState([]);
-  const [activeRecipe, setActiveRecipe] = useState<null | RecipeState>();
-
-  function showIngredients(recipeId: number) {
-    console.log('wip ')
-  }
+  const [activeRecipe, setActiveRecipe] = useState<null | number>();
 
   useEffect(() => {
     try {
@@ -38,11 +33,16 @@ function Recipes(): JSX.Element {
             <li key={index}>
               <a
                 style={{padding: "10px 0px"}}
-                onClick={() => fetchRecipe(recipe.id)}
+                onClick={() =>
+                  setActiveRecipe(index)
+                }
               >
                 {recipe.name}
+                {activeRecipe && activeRecipe === index &&
+                  <p>Active</p>
+                }
               </a>
-              {activeRecipe && activeRecipe.name}
+
             </li>
           );
         })}
