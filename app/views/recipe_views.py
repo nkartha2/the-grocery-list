@@ -24,17 +24,10 @@ def get_uom():
 
 @recipe_view.route("/recipes", methods=["GET"])
 def get_recipes():
-  recipes_results = Recipe.query.limit(5).all()
+  recipes_results = Recipe.query.limit(15).all()
+  # for recipe in recipes_results:
+  #   print(recipe.ingredients[0])
   recipes = recipes_schema.dump(recipes_results)
-  return jsonify(recipes)
-
-
-@recipe_view.route("/recipe", methods=["POST"])
-def get_recipe():
-  print('hiiii')
-  recipe_id = request.args.get("id")
-  recipes_results = Recipe.query.filter(Recipe.id.match(recipe_id))
-  recipes = recipe_schema.dump(recipes_results)
   return jsonify(recipes)
 
 
