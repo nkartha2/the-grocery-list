@@ -16,7 +16,7 @@ export interface UOM {
 }
 
 export interface AddIngredient {
-  ing: Ingredient,
+  ingredient: Ingredient,
   quantity: string,
   uom: UOM
 }

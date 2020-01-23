@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosClient from "./axiosClient";
 import './styles/_recipes.scss';
+import { AddIngredient } from './store/recipe_types';
 
 
 function Recipes(): JSX.Element {
@@ -28,7 +29,7 @@ function Recipes(): JSX.Element {
     <div className="main-section">
       <h2 className="recipe_title">Recipes</h2>
       <ol>
-        {recipeResults.map((recipe: {id: number, name: string}, index: number) => {
+        {recipeResults.map((recipe: {id: number, name: string, ingredients: AddIngredient[]}, index: number) => {
           return(
             <li key={index}>
               <a
@@ -38,11 +39,14 @@ function Recipes(): JSX.Element {
                 }
               >
                 {recipe.name}
-                {activeRecipe && activeRecipe === index &&
-                  <p>Active</p>
-                }
               </a>
-
+              {activeRecipe && activeRecipe === index &&
+                <ul>
+                  {recipe.ingredients.map((ingredient: AddIngredient) =>
+                    <li>{ingredient.ingredient.name}, {ingredient.quantity}, {ingredient.uom ? ingredient.uom : ''}</li>
+                  )}
+                </ul>
+              }
             </li>
           );
         })}

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 // import { AppState } from './index';
 import { removeRecipeIng } from './store/actions';
-import { RecipeState, Ingredient, AddIngredient } from './store/recipe_types';
+import { RecipeState, AddIngredient } from './store/recipe_types';
 import RemoveButton from './ui_components/RemoveButton';
 
 function IngredientsToBeAddedList(props: any): JSX.Element {
@@ -21,7 +21,7 @@ function IngredientsToBeAddedList(props: any): JSX.Element {
         <div style={{ display: "inline-block", marginLeft: "5px"}}>
           <p style={style}>{ingredient.quantity}</p>
           {ingredient.uom.name && <p style={style}>{ingredient.uom.name}</p>}
-          <p style={style}>{ingredient.ing.name}</p>
+          <p style={style}>{ingredient.ingredient.name}</p>
         </div>
       </li>
     );

@@ -195,7 +195,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     onAddClick: (ing: Ingredient, quantity: string, uom: UOM) => dispatch(
       addRecipeIng({
-        ing: ing,
+        ingredient: ing,
         quantity: quantity,
         uom: uom
       })
