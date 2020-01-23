@@ -26,14 +26,18 @@ def get_uom():
 def get_recipes():
   recipes_results = Recipe.query.limit(15).all()
   ingredients = []
+
   for recipe in recipes_results:
     if(len(recipe.ingredients) > 0):
       for ing in recipe.ingredients:
+        
         print(ing.ingredient.name)
-        ingredients.append(ingredient_schema.dump(ing.ingredient))
-  recipes = recipes_schema.dump(recipes_results, ingredients)
 
-  return jsonify(recipes)
+        ingredients.append(ingredient_schema.dump(ing.ingredient))
+
+  recipes = recipes_schema.dump(recipes_results)
+
+  return jsonify(recipes_results)
 
 
 @recipe_view.route("/add/recipe", methods=["POST"])
