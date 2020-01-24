@@ -1,32 +1,31 @@
 from app import ma
+from app.models import Ingredient, Ingredients, UnitOfMeasure, Recipe
 
 
-class IngredientSchema(ma.Schema):
+class IngredientSchema(ma.ModelSchema):
   class Meta:
-    fields = ("id", "name", "type")
+    model = Ingredient
 
 
-class IngredientsSchema(ma.Schema):
+class UnitofMeasureSchema(ma.Schema):
   class Meta:
-    fields = (
-      "quantity",
-      "ingredient",
-      "unit_of_measure",
-      "measure_id",
-      "recipe_id",
-      "ingredient"
-    )
+    fields = (UnitOfMeasure.name, UnitOfMeasure.id)
 
+class IngredientsSchema(ma.ModelSchema):
+  class Meta:
+    model = Ingredients
+
+  unit_of_measure = ma.Nested(UnitofMeasureSchema)
   ingredient = ma.Nested(IngredientSchema)
 
 
-class RecipeSchema(ma.Schema):
+class RecipeSchema(ma.ModelSchema):
   class Meta:
-    fields = ("id", "name", "ingredients")
+    model = Recipe
 
   ingredients = ma.List(ma.Nested(IngredientsSchema))
 
-
+unit_of_measure_schema = UnitofMeasureSchema()
 recipe_schema = RecipeSchema()
 ingredient_schema = IngredientSchema()
 ingredients_schema = IngredientsSchema()
