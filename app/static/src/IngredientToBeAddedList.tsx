@@ -20,7 +20,7 @@ function IngredientsToBeAddedList(props: any): JSX.Element {
         />
         <div style={{ display: "inline-block", marginLeft: "5px"}}>
           <p style={style}>{ingredient.quantity}</p>
-          {ingredient.uom.name && <p style={style}>{ingredient.uom.name}</p>}
+          {ingredient.unit_measure.name && <p style={style}>{ingredient.unit_measure.name}</p>}
           <p style={style}>{ingredient.ingredient.name}</p>
         </div>
       </li>

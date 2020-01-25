@@ -197,7 +197,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       addRecipeIng({
         ingredient: ing,
         quantity: quantity,
-        uom: uom
+        unit_measure: uom
       })
     )
   }

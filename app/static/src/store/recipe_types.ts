@@ -18,5 +18,5 @@ export interface UOM {
 export interface AddIngredient {
   ingredient: Ingredient,
   quantity: string,
-  uom: UOM
+  unit_measure: UOM
 }

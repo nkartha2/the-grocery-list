@@ -7,15 +7,16 @@ class IngredientSchema(ma.ModelSchema):
     model = Ingredient
 
 
-class UnitofMeasureSchema(ma.Schema):
+class UnitofMeasureSchema(ma.ModelSchema):
   class Meta:
-    fields = (UnitOfMeasure.name, UnitOfMeasure.id)
+    model = UnitOfMeasure
+
 
 class IngredientsSchema(ma.ModelSchema):
   class Meta:
     model = Ingredients
 
-  unit_of_measure = ma.Nested(UnitofMeasureSchema)
+  unit_measure = ma.Nested(UnitofMeasureSchema)
   ingredient = ma.Nested(IngredientSchema)
 
 
@@ -24,6 +25,7 @@ class RecipeSchema(ma.ModelSchema):
     model = Recipe
 
   ingredients = ma.List(ma.Nested(IngredientsSchema))
+
 
 unit_of_measure_schema = UnitofMeasureSchema()
 recipe_schema = RecipeSchema()

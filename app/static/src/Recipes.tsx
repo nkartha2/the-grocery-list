@@ -43,7 +43,7 @@ function Recipes(): JSX.Element {
               {activeRecipe && activeRecipe === index &&
                 <ul>
                   {recipe.ingredients.map((ingredient: AddIngredient) =>
-                    <li>{ingredient.ingredient.name}, {ingredient.quantity}, {ingredient.uom ? ingredient.uom : ''}</li>
+                    <li>{ingredient.ingredient.name}, {ingredient.quantity}, {ingredient.unit_measure ? ingredient.unit_measure.name : ''}</li>
                   )}
                 </ul>
               }
