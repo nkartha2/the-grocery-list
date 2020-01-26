@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosClient from "./axiosClient";
 import './styles/_recipes.scss';
-import { AddIngredient } from './store/recipe_types';
+import { AddIngredient, RecipeState } from './store/recipe_types';
 
 
 function Recipes(): JSX.Element {
@@ -28,20 +28,20 @@ function Recipes(): JSX.Element {
   return (
     <div className="main-section">
       <h2 className="recipe_title">Recipes</h2>
-      <ol>
-        {recipeResults.map((recipe: {id: number, name: string, ingredients: AddIngredient[]}, index: number) => {
+      <ul>
+        {recipeResults.map((recipe: RecipeState, index: number) => {
           return(
-            <li key={index}>
-              <a
-                style={{padding: "10px 0px"}}
-                onClick={() =>
-                  setActiveRecipe(index)
-                }
-              >
-                {recipe.name}
-              </a>
+            <li
+              key={index}
+              style={{padding: "10px"}}
+              onClick={() =>
+                setActiveRecipe(index)
+              }
+            >
+              {recipe.name}
               {activeRecipe && activeRecipe === index &&
-                <ul>
+                <ul style={{backgroundColor: "#fff", padding: "15px", color: "#000"}}>
+                  <li>{recipe.link}</li>
                   {recipe.ingredients.map((ingredient: AddIngredient) =>
                     <li>{ingredient.ingredient.name}, {ingredient.quantity}, {ingredient.unit_measure ? ingredient.unit_measure.name : ''}</li>
                   )}
@@ -50,7 +50,7 @@ function Recipes(): JSX.Element {
             </li>
           );
         })}
-      </ol>
+      </ul>
     </div>
   );
 }
