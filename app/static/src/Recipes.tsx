@@ -40,12 +40,16 @@ function Recipes(): JSX.Element {
             >
               {recipe.name}
               {activeRecipe && activeRecipe === index &&
-                <ul style={{backgroundColor: "#fff", padding: "15px", color: "#000"}}>
-                  <li>{recipe.link}</li>
-                  {recipe.ingredients.map((ingredient: AddIngredient) =>
-                    <li>{ingredient.ingredient.name}, {ingredient.quantity}, {ingredient.unit_measure ? ingredient.unit_measure.name : ''}</li>
-                  )}
-                </ul>
+                <div style={{backgroundColor: "#fff", padding: "15px", color: "#000"}}>
+                  <p>Link: {recipe.link}</p>
+                  <p>Ingredient List:</p>
+                  <ul>
+                    {recipe.ingredients.map((ingredient: AddIngredient) =>
+                      <li>{ingredient.ingredient.name}, {ingredient.quantity}, {ingredient.unit_measure ? ingredient.unit_measure.name : ''}</li>
+                    )}
+                  </ul>
+                </div>
+
               }
             </li>
           );
