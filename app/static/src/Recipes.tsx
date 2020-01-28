@@ -7,6 +7,14 @@ import { AddIngredient, RecipeState } from './store/recipe_types';
 function Recipes(): JSX.Element {
   const [recipeResults, setRecipes] = useState([]);
   const [activeRecipe, setActiveRecipe] = useState<null | number>();
+  
+  const onClickActiveRecipe = (recipeId: number) => {
+    if (recipeId === activeRecipe) {
+      setActiveRecipe(null)
+    } else {
+      setActiveRecipe(recipeId);
+    }
+  }
 
   useEffect(() => {
     try {
@@ -35,7 +43,7 @@ function Recipes(): JSX.Element {
               key={index}
               style={{padding: "10px"}}
               onClick={() =>
-                setActiveRecipe(index)
+                onClickActiveRecipe(index)
               }
             >
               {recipe.name}
