@@ -5,6 +5,13 @@ export interface RecipeState {
   ingredients: AddIngredient[]
 }
 
+export interface RecipeResponse {
+  id: string,
+  name: string,
+  link?: string,
+  ingredients: AddIngredient[]
+}
+
 export interface Ingredient {
   id: string,
   name: string

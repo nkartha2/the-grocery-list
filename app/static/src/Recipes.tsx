@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axiosClient from "./axiosClient";
 import './styles/_recipes.scss';
-import { AddIngredient, RecipeState } from './store/recipe_types';
+import { AddIngredient, RecipeResponse } from './store/recipe_types';
 
 
 function Recipes(): JSX.Element {
   const [recipeResults, setRecipes] = useState([]);
-  const [activeRecipe, setActiveRecipe] = useState<null | number>();
-  
-  const onClickActiveRecipe = (recipeId: number) => {
+  const [activeRecipe, setActiveRecipe] = useState<null | string>();
+
+  const onClickActiveRecipe = (recipeId: string) => {
     if (recipeId === activeRecipe) {
       setActiveRecipe(null)
     } else {
@@ -37,27 +37,33 @@ function Recipes(): JSX.Element {
     <div className="main-section">
       <h2 className="recipe_title">Recipes</h2>
       <ul>
-        {recipeResults.map((recipe: RecipeState, index: number) => {
+        {recipeResults.map((recipe: RecipeResponse, index: number) => {
           return(
             <li
               key={index}
               style={{padding: "10px"}}
               onClick={() =>
-                onClickActiveRecipe(index)
+                onClickActiveRecipe(recipe.id)
               }
             >
               {recipe.name}
-              {activeRecipe && activeRecipe === index &&
+              {activeRecipe && activeRecipe === recipe.id &&
                 <div style={{backgroundColor: "#fff", padding: "15px", color: "#000"}}>
-                  <p>Link: {recipe.link}</p>
+                  <p>Link:
+                    <a
+                      target="_blank"
+                      href={recipe.link}
+                    >
+                      {recipe.link}
+                    </a>
+                  </p>
                   <p>Ingredient List:</p>
                   <ul>
                     {recipe.ingredients.map((ingredient: AddIngredient) =>
-                      <li>{ingredient.ingredient.name}, {ingredient.quantity}, {ingredient.unit_measure ? ingredient.unit_measure.name : ''}</li>
+                      <li key={ingredient.ingredient.id}>{ingredient.ingredient.name}, {ingredient.quantity}, {ingredient.unit_measure ? ingredient.unit_measure.name : ''}</li>
                     )}
                   </ul>
                 </div>
-
               }
             </li>
           );
