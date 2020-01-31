@@ -35,20 +35,20 @@ function Recipes(): JSX.Element {
 
   return (
     <div className="main-section">
-      <h2 className="recipe_title">Recipes</h2>
+      <h2 className="recipe_header">Recipes</h2>
       <ul>
         {recipeResults.map((recipe: RecipeResponse, index: number) => {
           return(
             <li
               key={index}
-              style={{padding: "10px"}}
+              className="recipe_item"
               onClick={() =>
                 onClickActiveRecipe(recipe.id)
               }
             >
               {recipe.name}
               {activeRecipe && activeRecipe === recipe.id &&
-                <div style={{backgroundColor: "#fff", padding: "15px", color: "#000"}}>
+                <div className="panel">
                   <h5>Link:</h5>
                   <a
                     target="_blank"
