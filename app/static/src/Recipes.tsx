@@ -49,15 +49,14 @@ function Recipes(): JSX.Element {
               {recipe.name}
               {activeRecipe && activeRecipe === recipe.id &&
                 <div style={{backgroundColor: "#fff", padding: "15px", color: "#000"}}>
-                  <p>Link:
-                    <a
-                      target="_blank"
-                      href={recipe.link}
-                    >
-                      {recipe.link}
-                    </a>
-                  </p>
-                  <p>Ingredient List:</p>
+                  <h5>Link:</h5>
+                  <a
+                    target="_blank"
+                    href={recipe.link}
+                  >
+                    {recipe.link}
+                  </a>
+                  <h5>Ingredient List:</h5>
                   <ul>
                     {recipe.ingredients.map((ingredient: AddIngredient) =>
                       <li key={ingredient.ingredient.id}>{ingredient.ingredient.name}, {ingredient.quantity}, {ingredient.unit_measure ? ingredient.unit_measure.name : ''}</li>
