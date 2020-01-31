@@ -56,12 +56,16 @@ function Recipes(): JSX.Element {
                   >
                     {recipe.link}
                   </a>
-                  <h5>Ingredient List:</h5>
-                  <ul>
-                    {recipe.ingredients.map((ingredient: AddIngredient) =>
-                      <li key={ingredient.ingredient.id}>{ingredient.ingredient.name}, {ingredient.quantity}, {ingredient.unit_measure ? ingredient.unit_measure.name : ''}</li>
-                    )}
-                  </ul>
+                  {recipe.ingredients.length > 0 &&
+                    <div>
+                      <h5>Ingredient List:</h5>
+                      <ul>
+                        {recipe.ingredients.map((ingredient: AddIngredient) =>
+                          <li key={ingredient.ingredient.id}>{ingredient.ingredient.name}, {ingredient.quantity}, {ingredient.unit_measure ? ingredient.unit_measure.name : ''}</li>
+                        )}
+                      </ul>
+                    </div>
+                  }
                 </div>
               }
             </li>
