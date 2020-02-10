@@ -41,12 +41,14 @@ function Recipes(): JSX.Element {
           return(
             <li
               key={index}
-              className="recipe_item"
+              // className="recipe_item"
               onClick={() =>
                 onClickActiveRecipe(recipe.id)
               }
             >
-              {recipe.name}
+              <div className="recipe_item">
+                {recipe.name}
+              </div>
               {activeRecipe && activeRecipe === recipe.id &&
                 <div className="panel">
                   <h5>Link:</h5>
