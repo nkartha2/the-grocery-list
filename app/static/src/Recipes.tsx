@@ -41,7 +41,6 @@ function Recipes(): JSX.Element {
           return(
             <li
               key={index}
-              // className="recipe_item"
               onClick={() =>
                 onClickActiveRecipe(recipe.id)
               }
@@ -49,27 +48,29 @@ function Recipes(): JSX.Element {
               <div className="recipe_item">
                 {recipe.name}
               </div>
-              {activeRecipe && activeRecipe === recipe.id &&
-                <div className="panel">
-                  <h5>Link:</h5>
-                  <a
-                    target="_blank"
-                    href={recipe.link}
-                  >
-                    {recipe.link}
-                  </a>
-                  {recipe.ingredients.length > 0 &&
-                    <div>
-                      <h5>Ingredient List:</h5>
-                      <ul>
-                        {recipe.ingredients.map((ingredient: AddIngredient) =>
-                          <li key={ingredient.ingredient.id}>{ingredient.ingredient.name}, {ingredient.quantity}, {ingredient.unit_measure ? ingredient.unit_measure.name : ''}</li>
-                        )}
-                      </ul>
-                    </div>
-                  }
-                </div>
-              }
+              <div className={activeRecipe && activeRecipe === recipe.id ? "show" : "hide"}>
+                {activeRecipe && activeRecipe === recipe.id &&
+                  <div className={"panel"}>
+                    <h5>Link:</h5>
+                    <a
+                      target="_blank"
+                      href={recipe.link}
+                    >
+                      {recipe.link}
+                    </a>
+                    {recipe.ingredients.length > 0 &&
+                      <div>
+                        <h5>Ingredient List:</h5>
+                        <ul>
+                          {recipe.ingredients.map((ingredient: AddIngredient) =>
+                            <li key={ingredient.ingredient.id}>{ingredient.ingredient.name}, {ingredient.quantity}, {ingredient.unit_measure ? ingredient.unit_measure.name : ''}</li>
+                          )}
+                        </ul>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
             </li>
           );
         })}

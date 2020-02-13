@@ -24,16 +24,21 @@
   animation: slideDown 0.5s forwards;
 }
 
+.hide {
+  animation: slideDown 0.5s reverse;
+}
+
 @keyframes slideDown {
   0% {
     z-index: -5;
     opacity: 0;
     height: 1px;
     overflow-y: hidden;
-    transform: translateY(-100%)
+    transform: translateY(-100%);
   }
   10% {
     z-index: 1;
+    display: block;
     transform: translateY(0%);
   }
   100% {
