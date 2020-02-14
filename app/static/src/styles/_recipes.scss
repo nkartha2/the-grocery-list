@@ -17,15 +17,20 @@
   z-index: 2;
 }
 
-.panel {
-  position: relative;
-  background-color: #fff;
-  color: #000;
-  animation: slideDown 0.5s forwards;
+.show {
+  .panel {
+    position: relative;
+    background-color: #fff;
+    color: #000;
+    animation: slideDown 0.5s forwards;
+  }
 }
 
 .hide {
   animation: slideDown 0.5s reverse;
+  // height: 1px;
+  overflow: hidden;
+  background-color: #fff;
 }
 
 @keyframes slideDown {
@@ -45,6 +50,7 @@
     z-index: 1;
     padding: 30px;
     opacity: 100;
+    min-height: 200px;
     height: auto;
     overflow-y: auto;
     transform: translateY(2%)
