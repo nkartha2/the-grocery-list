@@ -4,8 +4,8 @@
   display: flex;
   align-items: flex-start;
   min-height: 100vh;
-  color: #fff;
-  background-color: $fireOrange;
+  background-color: #fefefe;
+  color: $fireOrange;
   font-family: 'Montserrat';
 }
 
@@ -14,25 +14,31 @@ h4 {
   color: #000;
 }
 
+a {
+  color: $fireOrange;
+}
+
 h3 {
   font-size: 30px;
 }
 
 .main-nav {
-  box-shadow: 0px 0px 5px 5px $shadow;
   flex: 1;
   align-self: stretch;
   text-align: center;
+  border-right: 1px solid $fireOrange;
   h1 {
     font-size: 35px;
     padding: 10px;
     font-family: 'Pacifico', cursive;
   }
   .menu {
-    width: 150px;
+    width: 200px;
     margin: 0 auto;
     a {
       display: block;
+      padding: 10px 0px;
+      text-decoration: none;
     }
   }
 }

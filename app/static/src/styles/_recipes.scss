@@ -13,14 +13,14 @@
 .recipe_item {
   padding: 10px;
   position: relative;
-  background-color: $fireOrange;
+  color: $ammo;
   z-index: 2;
 }
 
 .show {
   .panel {
     position: relative;
-    background-color: #fff;
+    background-color: $lightWhite;
     color: #000;
     animation: slideDown 0.5s forwards;
   }
@@ -28,9 +28,8 @@
 
 .hide {
   animation: slideDown 0.5s reverse;
-  // height: 1px;
   overflow: hidden;
-  background-color: #fff;
+  background-color: $lightWhite;
 }
 
 @keyframes slideDown {
