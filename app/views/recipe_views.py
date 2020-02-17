@@ -10,7 +10,7 @@ def get_ingredient():
   ingredient_name = request.args.get("ingredient_name")
   ingredient = Ingredient.query.filter(Ingredient.name.match(ingredient_name)).limit(5)
   ingredients = ingredient.all()
-  all_ingredients = ingredients_schema.dump(ingredients)
+  all_ingredients = ingredient_schema.dump(ingredients)
   return jsonify(all_ingredients)
 
 @recipe_view.route("/uom", methods=["GET"])
