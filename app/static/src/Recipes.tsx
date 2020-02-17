@@ -36,7 +36,7 @@ function Recipes(): JSX.Element {
   return (
     <div className="main-section">
       <h2 className="recipe_header">Recipes</h2>
-      <ul>
+      <ol>
         {recipeResults.map((recipe: RecipeResponse, index: number) => {
           return(
             <li
@@ -51,6 +51,7 @@ function Recipes(): JSX.Element {
               <div className={activeRecipe && activeRecipe === recipe.id ? "show" : "hide"}>
                 {activeRecipe && activeRecipe === recipe.id &&
                   <div className={"panel"}>
+                    <h4 className="recipe_name">{recipe.name}</h4>
                     <h5>Link:</h5>
                     <a
                       target="_blank"
@@ -74,7 +75,7 @@ function Recipes(): JSX.Element {
             </li>
           );
         })}
-      </ul>
+      </ol>
     </div>
   );
 }

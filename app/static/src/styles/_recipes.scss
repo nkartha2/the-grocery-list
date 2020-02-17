@@ -15,6 +15,7 @@
   position: relative;
   color: $ammo;
   z-index: 2;
+  text-transform: capitalize;
 }
 
 .show {
@@ -23,6 +24,12 @@
     background-color: $lightWhite;
     color: #000;
     animation: slideDown 0.5s forwards;
+    .recipe_name {
+      text-transform: capitalize;
+    }
+    a {
+      color: $shadow;
+    }
   }
 }
 
