@@ -26,6 +26,7 @@
     animation: slideDown 0.5s forwards;
     .recipe_name {
       text-transform: capitalize;
+      text-decoration: underline;
     }
     a {
       color: $shadow;
