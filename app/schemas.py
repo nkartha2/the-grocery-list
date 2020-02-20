@@ -29,6 +29,6 @@ class RecipeSchema(ma.ModelSchema):
 
 unit_of_measure_schema = UnitofMeasureSchema()
 recipe_schema = RecipeSchema()
-ingredient_schema = IngredientSchema()
+ingredient_schema = IngredientSchema(many=True)
 ingredients_schema = IngredientsSchema()
 recipes_schema = RecipeSchema(many=True)
