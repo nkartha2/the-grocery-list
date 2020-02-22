@@ -18,6 +18,7 @@ class RecipeState(enum.Enum):
 # mapper calls
 Base = declarative_base()
 
+
 class UnitOfMeasure(db.Model):
   __tablename__ = 'unit_of_measure'
   id = Column("measure_id", Integer, primary_key=True)
@@ -29,6 +30,7 @@ class Ingredient(db.Model):
   id = Column('ingredient_id', Integer, primary_key=True)
   name = Column("ingredient_name", String, unique=True)
   ingredient_type = Column("ingredient_type", String)
+
 
 # if a recipe is deleted - then ingredients
 # should be removed from ingredients table
@@ -42,8 +44,8 @@ class Recipe(db.Model):
   state = Column('recipe_state', Enum(RecipeState))
   notes = Column('recipe_notes', String(200))
   ingredients = relationship("Ingredients")
-  created_at = Column('created_at', Date, onupdate=datetime.datetime.now)
-  updated_at = Column('updated_at', Date, onupdate=datetime.datetime.now)
+  created_at = Column('created_at', Date, default=datetime.datetime.utcnow)
+  updated_at = Column('updated_at', Date, default=datetime.datetime.utcnow)
 
 
 class Ingredients(db.Model):
