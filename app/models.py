@@ -2,7 +2,7 @@
 import enum
 import datetime
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Date, Enum, ForeignKey, Integer, String
+from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 from app import db
 
@@ -44,8 +44,8 @@ class Recipe(db.Model):
   state = Column('recipe_state', Enum(RecipeState))
   notes = Column('recipe_notes', String(200))
   ingredients = relationship("Ingredients")
-  created_at = Column('created_at', Date, default=datetime.datetime.utcnow)
-  updated_at = Column('updated_at', Date, default=datetime.datetime.utcnow)
+  created_at = Column('created_at', DateTime, default=datetime.datetime.utcnow)
+  updated_at = Column('updated_at', DateTime, default=datetime.datetime.utcnow)
 
 
 class Ingredients(db.Model):
