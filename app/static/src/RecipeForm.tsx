@@ -6,7 +6,7 @@ import { RecipeState } from "./store/recipe_types";
 import { AppState } from './store/index';
 import { connect } from 'react-redux';
 
-import Button from './ui_components/Button';
+import FormButton from './ui_components/FormButton';
 import FormWrapper from './ui_components/FormWrapper';
 
 import "./styles/_recipe_form.scss";
@@ -15,10 +15,13 @@ import "./styles/_recipe_form.scss";
 function RecipeForm(props: RecipeState): JSX.Element {
   const [recipeName, setRecipeName] = useState("");
   const [recipeLink, setRecipeLink] = useState("");
+  const [formError, setFormError] = useState("");
 
-  async function submitRecipe () {
+  async function submitRecipe (e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
     try {
-      axiosClient({
+      await axiosClient({
         method: "post",
         url: '/api/v1/add/recipe',
         data: {
@@ -28,6 +31,7 @@ function RecipeForm(props: RecipeState): JSX.Element {
         }
       })
     } catch(e) {
+      setFormError(e.message)
       console.error(e)
     }
   }
@@ -43,38 +47,40 @@ function RecipeForm(props: RecipeState): JSX.Element {
 
   return (
     <FormWrapper>
-      <div>
-        <h3>Add Recipe</h3>
         <div>
-          <label>Recipe Link </label>
-          <input
-            className="form_input"
-            type="url"
-            name="recipe_link"
-            onChange={(e) => handleLinkChange(e)}
-          />
+          <form onSubmit={(e) => submitRecipe(e)}>
+            <h3>Add Recipe</h3>
+            <div>
+              <label>Recipe Link </label>
+              <input
+                className="form_input"
+                type="url"
+                name="recipe_link"
+                onChange={(e) => handleLinkChange(e)}
+              />
+            </div>
+            <div>
+              <label>Recipe Name </label>
+              <input
+                type="text"
+                name="recipe_name"
+                className="form_input"
+                onChange={(e) => handleNameChange(e)}
+              />
+            </div>
+            <div className="form-input">
+              <label>Notes: </label>
+              <textarea name="notes" />
+            </div>
+            {props.ingredients.length > 0 && <IngredientToBeAddedList/>}
+            <FormButton
+              ctaString={'Add Recipe'}
+            />
+          </form>
+          {formError && <p>{formError}</p>}
+          <IngredientForm />
         </div>
-        <div>
-          <label>Recipe Name </label>
-          <input
-            type="text"
-            name="recipe_name"
-            className="form_input"
-            onChange={(e) => handleNameChange(e)}
-          />
-        </div>
-        <div className="form-input">
-          <label>Notes: </label>
-          <textarea name="notes" />
-        </div>
-        {props.ingredients.length > 0 && <IngredientToBeAddedList/>}
-        <IngredientForm />
-        <Button
-          onClick={submitRecipe}
-          ctaString={'Add Recipe'}
-        />
-      </div>
-    </FormWrapper>
+      </FormWrapper>
   );
 }
 

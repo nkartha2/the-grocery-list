@@ -3,7 +3,6 @@ import axiosClient from "./axiosClient";
 import './styles/_recipes.scss';
 import { AddIngredient, RecipeResponse } from './store/recipe_types';
 
-
 function Recipes(): JSX.Element {
   const [recipeResults, setRecipes] = useState([]);
   const [activeRecipe, setActiveRecipe] = useState<null | string>();
