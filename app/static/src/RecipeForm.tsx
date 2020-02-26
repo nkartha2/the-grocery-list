@@ -17,6 +17,12 @@ function RecipeForm(props: RecipeState): JSX.Element {
   const [recipeLink, setRecipeLink] = useState("");
   const [formError, setFormError] = useState("");
 
+  const resetFields = () => {
+    setRecipeName("");
+    setRecipeLink("");
+    setFormError("");
+  }
+
   async function submitRecipe (e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -29,6 +35,8 @@ function RecipeForm(props: RecipeState): JSX.Element {
           "recipe_link": recipeLink,
           "ingredients": props.ingredients
         }
+      }).then(response => {
+        resetFields();
       })
     } catch(e) {
       setFormError(e.message)
@@ -53,6 +61,7 @@ function RecipeForm(props: RecipeState): JSX.Element {
             <div>
               <label>Recipe Link </label>
               <input
+                value={recipeLink}
                 className="form_input"
                 type="url"
                 name="recipe_link"
@@ -62,6 +71,7 @@ function RecipeForm(props: RecipeState): JSX.Element {
             <div>
               <label>Recipe Name </label>
               <input
+                value={recipeName}
                 type="text"
                 name="recipe_name"
                 className="form_input"
