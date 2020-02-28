@@ -1,15 +1,14 @@
 from flask import render_template, Blueprint, request, jsonify
 from app.models import UnitOfMeasure, Recipe, Ingredient, Ingredients
 from app import db
-import datetime
-from app.schemas import ingredient_schema, ingredients_schema, recipes_schema, recipe_schema
+from app.schemas import ingredient_schema, ingredients_schema, recipes_schema, recipe_schema, unit_of_measure_schema
 
 recipe_view = Blueprint('recipe_view', __name__, url_prefix="/api/v1/")
 
 @recipe_view.route("/ingredient", methods=["GET"])
 def get_ingredient():
-  ingredient_name = request.args.get("ingredient_name")
-  ingredient = Ingredient.query.filter(Ingredient.name.match(ingredient_name)).limit(5)
+  ingredient_name = request.args.get("ingredient_name");
+  ingredient = Ingredient.query.filter(Ingredient.name.contains(ingredient_name)).limit(5)
   ingredients = ingredient.all()
   all_ingredients = ingredient_schema.dump(ingredients)
   return jsonify(all_ingredients)
@@ -17,9 +16,9 @@ def get_ingredient():
 @recipe_view.route("/uom", methods=["GET"])
 def get_uom():
   request_uom = request.args.get("uom")
-  uom = UnitOfMeasure.query.filter(UnitOfMeasure.name.match(request_uom)).limit(5)
+  uom = UnitOfMeasure.query.filter(UnitOfMeasure.name.contains(request_uom)).limit(5)
   uoms = uom.all()
-  all_uoms = ingredients_schema.dump(uoms)
+  all_uoms = unit_of_measure_schema.dump(uoms)
   return jsonify(all_uoms)
 
 
@@ -42,13 +41,14 @@ def add_recipe():
   db.session.flush()
 
   for ingredient in request.json['ingredients']:
+    print(ingredient)
     ingredient_to_add = Ingredients(
-      ingredient_id=ingredient['ing']['id'],
+      ingredient_id=ingredient['ingredient']['id'],
       quantity=ingredient['quantity'],
       recipe_id=recipe.id,
     )
-    if ingredient['uom']:
-      uom_id = ingredient['uom']['id']
+    if ingredient['unit_measure']:
+      uom_id = ingredient['unit_measure']['id']
       ingredient_to_add.measure_id = uom_id
 
     db.session.add(ingredient_to_add)

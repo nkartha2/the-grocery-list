@@ -27,7 +27,7 @@ class RecipeSchema(ma.ModelSchema):
   ingredients = ma.List(ma.Nested(IngredientsSchema))
 
 
-unit_of_measure_schema = UnitofMeasureSchema()
+unit_of_measure_schema = UnitofMeasureSchema(many=True)
 recipe_schema = RecipeSchema()
 ingredient_schema = IngredientSchema(many=True)
 ingredients_schema = IngredientsSchema()
