@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import FormWrapper from '../ui_components/FormWrapper';
 import axiosClient from '../axiosClient';
-import Button from "../ui_components/Button";
+import FormButton from "../ui_components/FormButton";
 
 function UOMForm() {
   const [ uomName, setUOM ] = useState<string | ''>();
 
-  async function submitUOM() {
+  async function submitUOM(e: React.FormEvent<HTMLFormElement>) {
     try {
       axiosClient({
         method: "post",
@@ -22,7 +22,7 @@ function UOMForm() {
 
   return (
     <FormWrapper>
-      <div>
+      <form onSubmit={(e) => submitUOM(e)}>
         <label>Unit of Measure</label>
         <input
           className="form_input"
@@ -31,11 +31,10 @@ function UOMForm() {
           name="uom_name"
           onChange={(e) => setUOM(e.currentTarget.value)}
         />
-        <Button
+        <FormButton
           ctaString="Add Unit of Measure"
-          onClick={submitUOM}
         />
-      </div>
+      </form>
     </FormWrapper>
   );
 }

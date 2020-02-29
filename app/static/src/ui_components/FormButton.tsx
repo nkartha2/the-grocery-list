@@ -1,12 +1,12 @@
 import React from 'react';
 import "../styles/_buttons.scss";
 
-type ButtonProps = {
+type FormButtonProps = {
   color?: string,
   ctaString: string
 }
 
-function FormButton(props: ButtonProps) {
+function FormButton(props: FormButtonProps) {
   return (
     <button
       className="form_button"
