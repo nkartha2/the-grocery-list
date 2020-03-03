@@ -54,6 +54,7 @@ function Recipes(): JSX.Element {
                     <h5>Link:</h5>
                     <a
                       target="_blank"
+                      rel="noopener noreferrer"
                       href={recipe.link}
                     >
                       {recipe.link}
