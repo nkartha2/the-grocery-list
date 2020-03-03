@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 
 import FormButton from './ui_components/FormButton';
 import FormWrapper from './ui_components/FormWrapper';
+import debounce from './debounce';
 
 import "./styles/_recipe_form.scss";
 
@@ -23,9 +24,12 @@ function RecipeForm(props: RecipeState): JSX.Element {
     setFormError("");
   }
 
+  const debouncedSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    debounce(submitRecipe, 500);
+  }
+
   async function submitRecipe (e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
     try {
       await axiosClient({
         method: "post",
@@ -56,7 +60,7 @@ function RecipeForm(props: RecipeState): JSX.Element {
   return (
     <FormWrapper>
         <div>
-          <form onSubmit={(e) => submitRecipe(e)}>
+          <form onSubmit={(e) => debouncedSubmit(e)}>
             <h3>Add Recipe</h3>
             <div>
               <label>Recipe Link </label>
