@@ -6,15 +6,25 @@ import { addRecipeIng } from "./store/actions";
 import { connect } from 'react-redux';
 import DropDownList from './ui_components/DropdownSelect';
 import { AppState } from './store/index';
+import debounce from './debounce';
+
 
 function IngredientForm(props: any): JSX.Element {
+  // state and setter for ingredient results from api request
   const [ingredientResults, setIngResults] = useState<Ingredient[] | []>([]);
+  // state and setter for selected ingredient from dropdown
   const [ing, setIng] = useState<Ingredient| null>(null);
+  // state and setter for entered value into ingredient input
   const [ingName, setIngName] = useState<string>("");
+  // state and setter for unit of measure results from api request
   const [uomResults, setUOMResults] = useState<UOM[] | []>([]);
+  // state and setter for unit of measure selected from dropdown
   const [uom, setUOM] = useState<UOM| null>(null);
+  // state and setter for unit of measure entered into uom input
   const [uomName, setUomName] = useState<string>("");
+  // state and setter for ingredient quantity entered into quantity input
   const [quantity, setQuantity] = useState("");
+  // state and setter for showing dropdowns for ingredients and uom
   const [showUOMDropdown, setShowUOMDropdown] = useState<boolean>(false);
   const [showIngDropdown, setShowIngDropdown] = useState<boolean>(false);
 
@@ -31,6 +41,7 @@ function IngredientForm(props: any): JSX.Element {
   }
 
   async function searchIngredients (ingredName: string) {
+    console.log('search ')
     try {
       axiosClient({
         method: "get",
@@ -72,7 +83,7 @@ function IngredientForm(props: any): JSX.Element {
 
   const handleNameChange = (e: React.FormEvent<HTMLInputElement>) => {
     if (e && e.currentTarget && e.currentTarget.value) {
-      searchIngredients(e.currentTarget.value);
+      debounce(searchIngredients, e.currentTarget.value, 500);
       setIngName(e.currentTarget.value);
       setIng(null);
     } else {
