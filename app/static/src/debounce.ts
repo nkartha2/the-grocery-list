@@ -1,13 +1,17 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 
-export default function debounce(func: Function, wait: number) {
+// https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci
 
-  console.log('hii')
+export default function useDebounce(value: any, delay: number): any {
+  const [debouncedValue, setDebouncedValue] = useState("value");
 
-  func()
-  // should wait according to wait param to call the function
-  // setTimeout(func(), wait);
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay)
 
-  // clearTimeout to prevent the setTimeout to execute
-  // clearTimeout()
+    return () => clearTimeout(handler);
+  }, [value]);
+
+  return debouncedValue;
 }

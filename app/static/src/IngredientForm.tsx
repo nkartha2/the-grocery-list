@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dispatch } from 'redux';
 import axiosClient from "./axiosClient";
 import { Ingredient, UOM } from "./store/recipe_types";
@@ -6,7 +6,7 @@ import { addRecipeIng } from "./store/actions";
 import { connect } from 'react-redux';
 import DropDownList from './ui_components/DropdownSelect';
 import { AppState } from './store/index';
-import debounce from './debounce';
+import useDebounce from './debounce';
 
 
 function IngredientForm(props: any): JSX.Element {
@@ -27,6 +27,7 @@ function IngredientForm(props: any): JSX.Element {
   // state and setter for showing dropdowns for ingredients and uom
   const [showUOMDropdown, setShowUOMDropdown] = useState<boolean>(false);
   const [showIngDropdown, setShowIngDropdown] = useState<boolean>(false);
+  const debouncedIngredient = useDebounce(ingName, 500);
 
   function resetForm () {
     setIngResults([]);
@@ -41,7 +42,6 @@ function IngredientForm(props: any): JSX.Element {
   }
 
   async function searchIngredients (ingredName: string) {
-    console.log('search ')
     try {
       axiosClient({
         method: "get",
@@ -81,9 +81,15 @@ function IngredientForm(props: any): JSX.Element {
     }
   }
 
+  useEffect(() => {
+    if(debouncedIngredient) {
+      searchIngredients(debouncedIngredient);
+    }
+  }, [debouncedIngredient])
+
   const handleNameChange = (e: React.FormEvent<HTMLInputElement>) => {
     if (e && e.currentTarget && e.currentTarget.value) {
-      debounce(searchIngredients, e.currentTarget.value, 500);
+      // debounce(searchIngredients, e.currentTarget.value, 500);
       setIngName(e.currentTarget.value);
       setIng(null);
     } else {
