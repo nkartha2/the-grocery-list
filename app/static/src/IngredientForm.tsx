@@ -89,7 +89,6 @@ function IngredientForm(props: any): JSX.Element {
 
   const handleNameChange = (e: React.FormEvent<HTMLInputElement>) => {
     if (e && e.currentTarget && e.currentTarget.value) {
-      // debounce(searchIngredients, e.currentTarget.value, 500);
       setIngName(e.currentTarget.value);
       setIng(null);
     } else {
