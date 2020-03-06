@@ -9,14 +9,15 @@ export default function useDebounce(valueToDebounce: any, delay: number): any {
     // value only set after delay
     const handler = setTimeout(() => {
       setDebouncedValue(valueToDebounce);
-    }, delay)
+    }, delay);
 
     // cleaned up after useEffect called
     return () => clearTimeout(handler);
     // useEffect will only be called when
     // valueToDebounce will change which won't change
     // until the delay is complete
-  }, [valueToDebounce]);
+    }, [valueToDebounce, delay]
+  );
 
   return debouncedValue;
 }
