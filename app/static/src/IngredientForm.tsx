@@ -7,9 +7,10 @@ import { connect } from 'react-redux';
 import DropDownList from './ui_components/DropdownSelect';
 import { AppState } from './store/index';
 import useDebounce from './debounce';
-
+import Loader from './Loader';
 
 function IngredientForm(props: any): JSX.Element {
+  const [loading, setLoading] = useState<boolean>(false);
   // state and setter for ingredient results from api request
   const [ingredientResults, setIngResults] = useState<Ingredient[] | []>([]);
   // state and setter for selected ingredient from dropdown
