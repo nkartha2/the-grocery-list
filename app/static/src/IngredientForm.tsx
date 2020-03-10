@@ -10,7 +10,7 @@ import useDebounce from './debounce';
 import Loader from './Loader';
 
 function IngredientForm(props: any): JSX.Element {
-  const [loading, setLoading] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState<boolean>(false);
   // state and setter for ingredient results from api request
   const [ingredientResults, setIngResults] = useState<Ingredient[] | []>([]);
   // state and setter for selected ingredient from dropdown
@@ -44,6 +44,7 @@ function IngredientForm(props: any): JSX.Element {
 
   async function searchIngredients (ingredName: string) {
     try {
+      setLoading(true);
       axiosClient({
         method: "get",
         url: "/api/v1/ingredient",
@@ -59,6 +60,8 @@ function IngredientForm(props: any): JSX.Element {
         )
     } catch(e) {
       console.error(e);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -119,9 +122,16 @@ function IngredientForm(props: any): JSX.Element {
     }
   }
 
+  const loadingFeature = () => {
+    if(isLoading) {
+      return <Loader loadingString='loading' />
+    }
+  }
+
   return (
     <div className="sub">
       <h4>Add Ingredient</h4>
+      {loadingFeature()}
       <div
         style={{display: "block", margin: "10px 0px"}}
       >
